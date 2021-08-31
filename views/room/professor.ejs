@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>htmlpage_professor</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/professor.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/chat.css">
+    <link rel="stylesheet" href="/css/videoContainer.css">
+    <!-- <link rel="stylesheet" href="/css/board.css"> -->
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script defer src="/js/adapter.js"></script>
+    <script defer src="/js/kurento-utils.js"></script>
+    <script defer src="/socket.io/socket.io.js"></script>
+    <!-- <script defer src="/js/util/board.js"></script> -->
+
+    <script defer src="/js/util/face-api.min.js"></script>
+    <script defer src="/js/professor.js"></script>
+    <script defer src="/js/util/pfUtil.js"></script>
+    <script defer src="/js/util/videoContainer.js"></script>
+    <script defer src="/js/util/chat.js"></script>
+    <script defer src="/js/util/record.js"></script>
+    <script defer src="/js/receiveMessage_P.js"></script>
+    <script>
+        const ROOM_ID = '<%= roomID %>';
+        const USER_NAME = '<%= username %>';
+    </script>
+
+    <style>
+        canvas {
+            position: absolute;
+            padding: 0;
+            /* top: 80px; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main-container-left">
+        <nav id="navbar" class="flex-row">
+            <div id="nav-left" class="flex-row">
+                <button id="out" class="nav-button"><i class="fas fa-arrow-left fa-2x nav-icon"
+                        title="퇴장"></i></i></button>
+                <button id="full-screen" class="nav-button"><i class="fas fa-expand fa-2x nav-icon"
+                        title="전체화면"></i></button>
+            </div>
+
+            <div id="nav-center1" class="flex-row">
+                <button id="silence" class="nav-button"><i class="fas fa-volume-off fa-2x nav-icon"></i></button>
+                <button id="mic" class="nav-button"><i class="fas fa-microphone fa-2x nav-icon"
+                        title="마이크"></i></button>
+                <button id="camera" class="nav-button"><i class="fas fa-camera fa-2x nav-icon"></i></button>
+            </div>
+        </nav>
+        <div id="video-grid">
+            <video id="my-cam" preload="metadata" autoplay muted>
+            </video>
+        </div>
+    </div>
+
+    <div id="main-container-right">
+        <!-- <div id="my-cam-container">
+            <video id="my-cam" preload="metadata" autoplay muted></video>
+        </div> -->
+
+        <div id="chat-container">
+            <div id="chatView"></div>
+            <form id="chatForm" onsubmit="return false" autocomplete="off">
+                <input type="text" id="msg" autofocus="true" autocomplete="off">
+                <input type="submit" id="send" value="전송">
+            </form>
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
