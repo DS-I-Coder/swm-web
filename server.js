@@ -43,7 +43,7 @@ io.on('connection', socket => {
     console.log('a user connected');
 
     socket.on('message', message => {
-        //console.log('Message received: ', message.event);
+        console.log('Message received: ', message.event);
 
         switch (message.event) {
             case 'join':

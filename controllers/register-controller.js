@@ -3,18 +3,18 @@ const connection = require('./../config');
 module.exports.register = function (req, res) {
   const encryptedString = cryptr.encrypt(req.body.pw);
   const users = {
-    "id": req.body.id,
-    "pw": encryptedString,
-    "name": req.body.name,
-    "email": req.body.email,
-    "phone": req.body.phone,
-    "bdate": req.body.bdate
+    "userID": req.body.id,//
+    "userPW": encryptedString,
+    "userName": req.body.name,
+    "userEmail": req.body.email,
+    "userAge": req.body.age,
+    "category": req.body.category
   }
-  const sql = 'INSERT INTO users SET ?';
+  const sql = 'INSERT INTO users SET ?;';
   connection.query(sql, users, function (error, results, fields) {
     console.log(error);
     if (error) {
-      if(error.errno==1062){
+      if(error.errno==1062){ //중복
         res.send("<script type='text/javascript'>alert('중복된 아이디 혹은 이메일입니다.'); document.location.href='/register';</script>");
       }
       else {

@@ -1,58 +1,59 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     text-decoration: none;
-    font-family:sans-serif;
-  
-  }
+    font-family: sans-serif;
 
-#MakeRoomTitle{
+}
+
+#MakeRoomTitle {
     font-style: normal;
     font-weight: bold;
     font-size: 58px;
     letter-spacing: 0.2px;
     text-align: left;
 }
-.mainForm{
+
+.mainForm {
     width: 1160px;
     margin: 0 auto;
 }
 
-.makeForm{
+.makeForm {
     overflow: hidden;
     padding-top: 55px;
 }
 
-#left{
+#left {
     float: left;
-    width:580px;
+    width: 580px;
     height: 513px;
 }
 
-#right{
+#right {
     float: left;
-    width:580px;
+    width: 580px;
     height: 513px;
     background: #E2F5FF;
 }
 
-.enter{
+.enter {
     text-align: center;
     margin-top: 50px;
 }
 
-.btn{
+.btn {
     width: 410px;
     height: 70px;
     border: 1px solid #23A6F0;
     background-color: white;
     border-radius: 5px;
-    color:#23A6F0;
+    color: #23A6F0;
     font-weight: 900;
     font-size: 36px;
 }
 
-.roomInput{
+.roomInput {
     width: 418px;
     height: 58px;
     margin: 16px 0px 0px 44px;
@@ -62,13 +63,13 @@
     box-sizing: border-box;
 }
 
-.notice{
+.notice {
     width: 490px;
     height: 395px;
     margin: 16px 0px 0px 44px;
 }
 
-p{
-    margin-left:44px;
-    margin-top:30px;
+p {
+    margin-left: 44px;
+    margin-top: 30px;
 }

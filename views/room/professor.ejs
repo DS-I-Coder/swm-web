@@ -7,7 +7,6 @@
     <title>htmlpage_professor</title>
     <link rel="stylesheet" type="text/css" media="screen" href="/css/professor.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/css/chat.css">
-    <link rel="stylesheet" href="/css/videoContainer.css">
     <!-- <link rel="stylesheet" href="/css/board.css"> -->
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -21,11 +20,12 @@
     <script defer src="/js/util/pfUtil.js"></script>
     <script defer src="/js/util/videoContainer.js"></script>
     <script defer src="/js/util/chat.js"></script>
-    <script defer src="/js/util/record.js"></script>
     <script defer src="/js/receiveMessage_P.js"></script>
     <script>
         const ROOM_ID = '<%= roomID %>';
-        const USER_NAME = '<%= username %>';
+        const USER_NAME = '<%= userName %>';
+
+        const ROOM_NOTICE = '<%= roomNotice %>'; // 필요없는 거 같기도.
     </script>
 
     <style>
@@ -64,6 +64,9 @@
         <!-- <div id="my-cam-container">
             <video id="my-cam" preload="metadata" autoplay muted></video>
         </div> -->
+        <div id = "notice">
+            <p><%= roomNotice %></p>
+        </div>
 
         <div id="chat-container">
             <div id="chatView"></div>

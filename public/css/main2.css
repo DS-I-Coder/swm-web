@@ -1,0 +1,595 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* 배경 */
+#pinkrectangle {
+  position: absolute;
+  width: 80%;
+  height: 90%;
+  left: 0px;
+  top: 95px;
+  background: #FFDCD1;
+}
+
+#bluerectangle{
+  position: absolute;
+  width: 45%;
+  height: 85%;
+  right: 0px;
+  top: 0px;
+  background: #E2F5FF;
+  
+}
+
+
+/* 헤더 */
+header{
+  height: 95px
+}
+
+#logo{
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  width: 200px;
+  height: 32px;
+  letter-spacing: 0.1px;
+  color: #252B42;
+}
+
+
+.topmenu{
+  left: 195px;
+  top: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  position: absolute;
+  color: #737373;
+  float:left;
+  text-align: center; 
+  list-style:none;
+}
+
+.topmenu li{
+  float: left;
+  padding-right:45px;
+  padding-top:5px;
+}
+
+#register{
+  position:absolute;
+  top:30px;
+  right:230px
+}
+
+#login{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: right;
+  letter-spacing: 0.2px;
+  color: #23A6F0;
+  margin-right: 30px;
+  text-decoration-line:none;
+  background: none;
+  border: none;
+}
+
+#join{
+  /* display: flex;
+  flex-direction: row; */
+  align-items: center;
+  padding: 10px 20px;
+  width: 130px;
+  height: 50px;
+  background: #23A6F0;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  /* line-height: 22px; */
+  letter-spacing: 0.2px;
+  color: #FFFFFF;
+}
+
+
+
+/* 가운데 로고 */
+#center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 0px;
+
+  position: absolute;
+  width: 686px;
+  height: 706px;
+  left: calc(50% - 686px/2);
+  top: 40px;
+}
+
+#centerlogo{
+  position: absolute;
+  width: 686px;
+  height: 546px;
+  left: calc(50% - 686px/2);
+  top: 80px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 80px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  
+}
+
+#logotag{
+  position: static;
+  width: 170px;
+  height: 24px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+
+  color: #23A6F0;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+}
+
+#mainlogo{
+  position: static;
+  width: 542px;
+  height: 240px;
+  left: 72px;
+  top: 104px;
+  font-weight: 700;
+
+  font-size: 58px;
+  line-height: 80px;
+
+
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #252B42;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 40px;
+
+}
+
+#subtitle{
+  position: static;
+  width: 455px;
+  height: 30px;
+  left: 115.5px;
+  top: 384px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #737373;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+/* 가운데 버튼 */
+#btncenter{
+  top:70%;
+  float:left;
+  position: absolute;
+
+}
+
+#btnmakeroom{
+  padding: 15px 40px;
+  right: 51.44%;
+  background: #23A6F0;
+  border: 0;
+  border-radius: 5px;
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #FFFFFF;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 10px 0px;
+
+}
+
+#gotosearch{
+  padding: 15px 40px;
+  position: static;
+  left: 51.44%;
+  width: 169px;
+  border: 1px solid #23A6F0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background:transparent;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 0px 10px;
+
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+
+  text-align: center;
+  letter-spacing: 0.2px;
+
+  color: #23A6F0;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 10px 0px;
+}
+
+
+/* 누적시간 랭킹 */
+#lankingtitle{
+  font-weight: 700;
+  font-size: 36px;
+  position: absolute;
+
+  /* left: 50%; 
+  transform: (-50%,0); */
+  top: 110%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+
+}
+
+.box{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 35px 40px;
+  position: absolute;
+  width: 860px;
+  height: 100px;
+  background: #FFFFFF;
+  box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
+  left: 50%;
+  transform: translate(-50%, 0%);
+
+}
+
+#lankingbox1{
+  top: 130%
+}
+
+
+#lankingbox2{
+  top: 160%;
+}
+
+/* 누적시간 박스 안 내용 */
+.lanking{
+  padding:0 13px;
+}
+
+.name{
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 8%;
+}
+
+.redhr{
+  background: #E74040;
+  width: 190px;
+  height: 2px;
+  border: 0px;
+  top: 79px;
+  margin-bottom: 8%;
+
+}
+
+.time{
+  width: 190px;
+  height: 20px;
+  font-size: 32px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #737373;
+  letter-spacing: 0.2px;
+  margin-bottom: 8%;
+
+}
+
+.tag{
+  width: 190px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  color: #737373;
+}
+
+
+/* 검색 */
+#search{
+    top:200%;
+    position: absolute;
+    text-align: center;
+    left:50%;
+    transform: translate(-50%, 0%);
+}
+
+#searchtxt{
+  margin-top:10%;
+  text-align: center;
+  margin-bottom: 20%;
+}
+
+#searchtag{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  color: #23A6F0;
+}
+
+#searchtitle{
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 50px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #252B42;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 10px 0px;
+}
+
+#searchsubtitle{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+  margin: 10px 0px;
+}
+
+#searchbar{
+  margin-bottom: 50px;
+  height: 50px;
+  width: 680px;
+}
+
+
+#searchinput{
+  background: #F9F9F9;
+  border: 1px solid #E6E6E6;
+  border-radius: 5px;
+  box-sizing: border-box;
+
+  font-size: 14px;
+  line-height: 28px;
+
+  letter-spacing: 0.2px; 
+  padding:15px 20px;
+  width: 100%;
+  height: 100%;
+  color: #737373;
+  float: left;
+}
+
+#searchbtn{
+  background: #23A6F0;
+  border: 1px solid #E6E6E6;
+  position: relative;
+  height: 50px;
+  width: 100px;
+  outline: none;
+  float: right;
+  text-align: center;
+  border-radius: 0px 5px 5px 0px;
+  top: -50px;
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  color: #FFFFFF;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+
+/* 로고(그림) */
+#logoicon{
+  position: absolute;
+  top:310%;
+  margin-left: 15%;
+  margin-top: 10%;
+}
+
+.logoicon{
+  width: 408.09px;
+  height: 408.09px;
+  border-radius: 0px 83.1148px;
+
+}
+
+#iconbottom{
+  background: #00087E;
+
+}
+
+#icontop{
+  background: #FDB9C6;
+  position: relative;
+  top: -430px;
+  left: -30.75;
+  text-align: center;
+
+  font-weight: 700;
+  font-size: 120px;
+  line-height: 50px;
+  letter-spacing: 0.2px;
+  color: #252B42;
+  align-items: center;
+  display:table-cell;
+
+  vertical-align:middle;
+}
+
+#abouttxt{
+  position: absolute;
+  top:350%;
+  left: 60%;
+}
+
+#hrabout{
+  width: 94px;
+  height: 7px;
+  border: 0;
+  background: #E74040;
+}
+
+#aboutswm{
+  width: 142px;
+  height: 100px;
+  left: 0px;
+  top: 42px;
+  font-weight:700;
+  font-size: 40px;
+  line-height: 50px;
+  letter-spacing: 0.2px;
+  color: #252B42;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 35px 0px;
+}
+
+#aboutsub{
+  height: 20px;
+  left: 0px;
+  top: 177px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  color: #737373;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+  margin: 35px 0px;
+}
+
+#more{
+  left: 0%;
+  right: 18.81%;
+  top: 0%;
+  bottom: 0%;
+  font-size: 14px;
+  font-weight:700;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: #23A6F0;
+
+}
+
+
+/* 방 목록 */
+#studyroomlist{
+  top: 400%;
+  margin-left: 15%;
+}
+
+#roomlisttxt{
+  position: absolute;
+  top:420%;
+}
+
+#roomlisttitle{
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 50px;
+  letter-spacing: 0.2px;
+  color: #252B42;
+  margin: 10px 0px;
+
+}
+
+#roomlistitlesub{
+  font-weight: 400;
+  font-size: 14px;
+  color: #737373;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  letter-spacing: 0.2px;
+  margin: 10px 0px;
+}
+
+
+
+.roomlist{
+  position: absolute;
+  top: 440%;
+  text-align: center;
+  width: 1000px;
+  left:50%;
+  margin-left: -500px;
+}
+
+
+.roomimage{
+  position: relative;
+  margin-right: 20px;
+  margin-bottom: 40px;
+  float: left;
+  width: 220px;
+  height: 250px;
+  background: #FFDCD1;
+  text-align: center;
+
+}
+
+.roomname{
+  margin-top:30px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  width: 190px;
+  height: 190px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+}
+
+.roomname p{
+
+  line-height: 80px;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 0.2px;
+  color: #000000;
+}
+
+

@@ -6,7 +6,7 @@ function removeGreen(ele) {
 }
 
 const exitRoomBtn = document.getElementById('out');
-exitRoomBtn.addEventListener('click', () => {
+exitRoomBtn.addEventListener('click', () => { /*뒤로가기 버튼*/
     swal({
         title: "수업을 종료하시겠습니까?",
         text: "학생이 남아있는 경우,\n모두 퇴장됩니다.",

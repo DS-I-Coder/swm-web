@@ -12,21 +12,46 @@ body {
 
 .loginForm {
   position:absolute;
-  width:300px;
-  height:400px;
-  padding: 30px, 20px;
   background-color:#FFFFFF;
   text-align:center;
   top:40%;
   left:50%;
   transform: translate(-50%,-50%);
-  border-radius: 15px;
   font-size:40px;
 }
 
 .loginForm h2{
   text-align: center;
   margin: 30px;
+}
+
+.loginForm p{
+  font-weight: normal;
+  font-size: 14px;
+  text-align: left;
+  color: #2E3A59;
+}
+
+.signupForm {
+  position:absolute;
+  background-color:#FFFFFF;
+  text-align:center;
+  margin-top: 800px;
+  left:50%;
+  transform: translate(-50%,-50%);
+  font-size:40px;
+}
+
+.signupForm h2{
+  text-align: center;
+  margin: 30px;
+}
+
+.signupForm p{
+  font-weight: normal;
+  font-size: 14px;
+  text-align: left;
+  color: #2E3A59;
 }
 
 .mainForm {
@@ -43,8 +68,7 @@ body {
   font-size:40px;
 }
 .idForm{
-  border-bottom: 2px solid #adadad;
-  margin: 30px;
+  margin: 25px;
   padding: 10px 10px;
 }
 
@@ -55,44 +79,54 @@ body {
 }
 
 .passForm{
-  border-bottom: 2px solid #adadad;
-  margin: 30px;
+  margin: 25px;
   padding: 10px 10px;
 }
 
+.join{
+  margin-top: 8px;
+  padding-left:14px;
+  background: #EDF1F7;
+  border: 1px solid #C5CEE0;
+  border-radius: 8px;
+  Width :384px;
+  Height :48px;
+}
+
 .id {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
+  margin-top: 8px;
+  padding:14px;
+  background: #EDF1F7;
+  border: 1px solid #C5CEE0;
+  border-radius: 8px;
+  Width :384px;
+  Height :48px;
 }
 
 .pw {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
+  margin-top: 8px;
+  padding:14px;
+  background: #EDF1F7;
+  border: 1px solid #C5CEE0;
+  border-radius: 8px;
+  Width :384px;
+  Height :48px;
 }
 
 .btn {
   position:relative;
-  left:40%;
+  left:42.3%;
   transform: translateX(-50%);
   margin-bottom: 40px;
-  width:80%;
-  height:40px;
-  background-color: navy;
+  width: 384px;
+  height: 48px;
+  background-color: #192038;
   background-position: left;
   background-size: 200%;
   color:white;
   font-weight: bold;
-  border:none;
+  font-size:14px;
+  border-radius: 8px;
   cursor:pointer;
   transition: 0.4s;
   display:inline;
@@ -103,17 +137,18 @@ body {
 
 .btn2 {
   position:relative;
-  left:15%;
+  left:40%;
   transform: translateX(-50%);
-  margin-bottom: 10px;
-  width:30%;
-  height:40px;
-  background-color: navy;
+  margin-bottom: 40px;
+  width: 384px;
+  height: 48px;
+  background-color: #192038;
   background-position: left;
   background-size: 200%;
   color:white;
   font-weight: bold;
-  border:none;
+  font-size:14px;
+  border-radius: 8px;
   cursor:pointer;
   transition: 0.4s;
   display:inline;
@@ -125,5 +160,5 @@ body {
 
 .bottomText {
   text-align: center;
-  font-size: 20px;
+  font-size: 14px;
 }

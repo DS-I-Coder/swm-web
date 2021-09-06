@@ -5,7 +5,7 @@ module.exports.auth=function(req,res){
     const id = req.body.id;
     const pw = req.body.pw;
 
-    connection.query('SELECT * FROM users WHERE id = ?',[id], function (error, results, fields) {
+    connection.query('SELECT * FROM users WHERE userID = ?',[id], function (error, results, fields) {
       if (error) {
           res.json({
             status:false,
@@ -14,12 +14,12 @@ module.exports.auth=function(req,res){
       }else{
 
         if(results.length >0){
-          decryptedString = cryptr.decrypt(results[0].pw);
+          decryptedString = cryptr.decrypt(results[0].userPW);
             if(pw==decryptedString){
               console.log("login");
               req.session.user={
                 id: id,
-                name: results[0].name,
+                name: results[0].userName,
                 authorized: true
               };
               console.log(req.session.user);
