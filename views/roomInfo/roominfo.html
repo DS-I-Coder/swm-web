@@ -1,65 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="stylesheet" type="text/css" href="/css/roomInfo.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>MakeRoom</title>
-    <script defer src="/js/roomInfo.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>MakeRoom</title>
+  <script defer src="/js/roomInfo.js"></script>
 </head>
+
 <body>
-  <div class="header">
-    <div class="header-left">
-      <div calss="swm-logo">
-        <p>Study with Me!</p>
-        <ul>
-          <li>
-            <a href="">Home</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="">Record</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="">About</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="header-right">
-      <button>Mypage</button>
-    </div>
-  </div>
-    <div id="input" class="mainForm">
-      <h3 id="MakeRoomTitle">MakeRoom<h2>
-      <div class="makeForm">
-        <div id="left">
-          <p>스터디방 이름</p>
-          <input type="text" class="roomInput" id="roomName" placeholder="스터디방 이름을 입력하세요">
-          <p>스터디 분야</p>
-          <input type="text" class="roomInput" id="roomCatagory" placeholder="스터디 분야를 선택하세요">
-          <p>스터디 종류</p>
-          <p>초기 장치 설정</p>
-        </div>  
-        <div id="right">
-            <p>공지사항 설정</p>
-            <input type="text" class="notice" id="roomNotice" placeholder="스터디 규칙, 공지사항 등을 입력해주세요">
-        </div>
-      </div>
-      <div class="enter">
-        <form action="/room/create" method="get">
-          <input class="btn" type="submit" value="Enter">
+  <div id="input" class="mainForm">
+    <h3 id="MakeRoomTitle">MakeRoom<h2>
+        <form action="/room/create" method="post">
+          <div class="makeForm">
+            <div id="left">
+              <p>스터디방 이름</p>
+              <input type="text" class="roomInput" id="roomTitle" name = "roomTitle" placeholder="스터디방 이름을 입력하세요">
+              <p>스터디 분야</p>
+              <input type="text" class="roomInput" id="roomCatagory" name = "roomCategory" placeholder="스터디 분야를 선택하세요">
+              <p>스터디 종류</p>
+              <p>초기 장치 설정</p>
+            </div>
+            <div id="right">
+              <p>공지사항 설정</p>
+              <input type="textarea" cols = 20 class="notice" id="roomNotice" name = "roomNotice" placeholder="스터디 규칙, 공지사항 등을 입력해주세요">
+            </div>
+          </div>
+          <div class="enter">
+            <!-- <form action="/room/create" method="get"> -->
+            <input class="btn" type="submit" value="Enter">
+          </div>
         </form>
-      </div>
-    </div>
-    
+  </div>
+
 </body>
+
 </html>

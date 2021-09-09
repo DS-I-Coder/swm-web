@@ -21,5 +21,4 @@ app.post('/api/auth',authController.auth);
 console.log(authController);
 app.post('/controllers/register-controller', registerController.register);
 app.post('/controllers/auth-controller', authController.auth);
-
 module.exports = app;

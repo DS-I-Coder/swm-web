@@ -1,4 +1,5 @@
 const express = require('express');
+const connection = require('./../config');
 const router = express.Router();
 const {
     v4: uuidV4
@@ -6,7 +7,7 @@ const {
 
 router.get('/', function (req, res) {
     if (req.session.user) res.redirect('/main');
-    else res.render('index.html');
+    else res.render('main.html');
 });
 
 router.get('/login', function (req, res) {
@@ -21,9 +22,9 @@ router.get('/main', function (req, res) {
     else {
         console.log(req.session);
         console.log('userid:', req.session.user.id);
-        res.render('main', {
+        res.render('main.html', {
             userid: req.session.user.id,
-            username: req.session.user.name
+            userName: req.session.user.name
         });
     }
 });
@@ -52,51 +53,61 @@ router.get('/room/roominfo', function (req, res) {
     res.render('roominfo/roominfo.html');
 });
 
-router.get('/room/create', (req, res) => {
+//search화면으로 넘기기
+router.get('/search', function (req, res) {
+    res.render('otherpage/search.html');
+});
+
+router.post('/room/create', (req, res) => {
     // res.redirect(`/room/${uuidV4()}/host`);
-    res.redirect(`/room/${uuidV4()}`);
+    const room = [
+        req.body.roomTitle,
+        req.body.roomCategory,
+        req.body.roomNotice,
+        uuidV4()
+    ];
+        
+    //숫자 있는 부분 차례로,
+    //max참여인원, 현재 참여인원, 공개방여부, 베팅방여부
+    let sql = 'INSERT INTO room(roomTitle, maxParticipant, curParticipant,roomCategory,isPublic,isBetting,roomNotice,uuid) VALUES(?,4,0,?,1,0,?,?);';
+
+    connection.query(
+        sql, room,
+        function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+                //res.send("<script type='text/javascript'>alert('알 수 없는 오류가 발생하였습니다. 다시 시도해주세요.'); document.location.href='/main';</script>");
+
+            }
+            req.session.roomInfo = {
+                notice: req.body.roomNotice
+            }
+            res.redirect(`/room/${room[3]}`);
+            
+        });
 });
 
-router.get('/room', (req, res) => {
-    res.redirect(`/room/${uuidV4()}`);
-});
+// router.get('/room', (req, res) => {
+//     res.redirect(`/room/${uuidV4()}`);
+// });
 
-// router.get('/room/:room/host', (req, res) => {
+
 router.get('/room/:room', (req, res) => {
     const user = req.session.user;
+
+    console.log(req.session.roomInfo); //
     if (!user) {
         res.redirect('/login');
     } else {
         res.render('room/professor', {
             roomID: req.params.room,
-            username: user.name
+            userName: user.name,
+            //아래로 추가
+            roomNotice: req.session.roomInfo.notice
         });
-    }
-});
-
-router.get('/room/:room', (req, res) => {
-    const user = req.session.user;
-    if (!user) {
-        res.redirect('/login');
-    } else {
-        //res.render('room/student'){
-        res.render('room/professor', {
-            roomID: req.params.room,
-            username: user.name
-        });
-    }
-});
-
-router.get('/room/:room/mobile', (req, res) => {
-    const user = req.session.user;;
-    if (!user) {
-        res.redirect('/login');
-    } else {
-        res.render('room/mobileSpeaker', {
-            roomID: req.params.room,
-            username: user.name
-        });
-    }
+        console.log(req.params.room)
+        console.log(user.name) 
+    } 
 });
 
 module.exports = router;

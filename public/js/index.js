@@ -10,18 +10,13 @@ createRoomBtn.addEventListener('click', () => {
     location.href = "/room/roominfo";
 });
 
-speakerBtn.addEventListener('click', () => {
-    const roomID = roomIDInput.value;
-    if (roomID) {
-        location.href = `/room/${roomID}/mobile`;
-    }
-})
-
 joinBtn.addEventListener('click', () => {
     joinRoom();
 });
 
 function joinRoom() {
+    // TODO: roomTitle로 db에서 uuidv4 주소 찾기?
+
     const roomID = roomIDInput.value;
     if (roomID) {
         location.href = `/room/${roomID}`;
