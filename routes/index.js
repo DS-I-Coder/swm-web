@@ -47,6 +47,11 @@ router.get("/logout", function (req, res) {
     }
 });
 
+//roominfo화면으로 넘기기
+router.get('/room/roominfo', function (req, res) {
+    res.render('roominfo/roominfo.html');
+});
+
 router.get('/room/create', (req, res) => {
     // res.redirect(`/room/${uuidV4()}/host`);
     res.redirect(`/room/${uuidV4()}`);
