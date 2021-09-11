@@ -34,32 +34,20 @@ socket.on('message', message => {
     case 'userDisconnected':
       userDisconnected(message.userid);
       break;
-    case 'warn':
-      swal({
-        title: "경고",
-        text: "학생! 경고입니다!",
-        icon: "warning",
-        button: "확인",
-      });
-      break;
-    case 'kicked':
-      handelKicked();
-      break;
-    case 'banChat':
-      handleBanChat();
-      break;
-    case 'leave-accept':
-      leaveAccept();
-      break;
-    case 'question-accept':
-      questionAccept();
-      break;
-    case 'micON':
+      //어딘가 쓸만한가 하여 냅둠.
+    // case 'warn':
+    //   swal({
+    //     title: "경고",
+    //     text: "학생! 경고입니다!",
+    //     icon: "warning",
+    //     button: "확인",
+    //   });
+    //   break;
+
+    case 'micON': //이거 마이크 버튼은 아닌 거 같은데 일단 냅둠. 
       micON(message.speakerid);
       break;
-    case 'silence':
-      handleSilence();
-      break;
+
     case 'closeRoom':
       closeRoom();
       break;
