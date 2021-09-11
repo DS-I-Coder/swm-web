@@ -37,6 +37,7 @@ socket.on('message', message => {
             location.href = '/';
             break;
         case 'closeRoom':
+            console.log('receiveMessage_P; closeRoom')
             closeRoom();
             break;
     }

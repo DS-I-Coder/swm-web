@@ -59,12 +59,13 @@ router.post('/room/create', (req, res) => {
         req.body.roomTitle,
         req.body.roomCategory,
         req.body.roomNotice,
-        uuidV4()
+        uuidV4(),
+        req.session.user.uid
     ];
-        
+    console.log("test; ",req.session.user.uid)
     //숫자 있는 부분 차례로,
     //max참여인원, 현재 참여인원, 공개방여부, 베팅방여부
-    let sql = 'INSERT INTO room(roomTitle, maxParticipant, curParticipant,roomCategory,isPublic,isBetting,roomNotice,uuid) VALUES(?,4,0,?,1,0,?,?);';
+    let sql = 'INSERT INTO room(roomTitle, maxParticipant, curParticipant,roomCategory,isPublic,isBetting,roomNotice,uuid, host) VALUES(?,4,0,?,1,0,?,?,?);';
 
     connection.query(
         sql, room,
