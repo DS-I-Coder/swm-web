@@ -80,6 +80,7 @@ router.post('/room/create', (req, res) => {
 
             }
             req.session.roomInfo = {
+                title: req.body.roomTitle,
                 notice: req.body.roomNotice
             }
             res.redirect(`/room/${room[3]}`);
@@ -103,6 +104,7 @@ router.get('/room/:room', (req, res) => {
             roomID: req.params.room,
             userName: user.name,
             //아래로 추가
+            roomTitle: req.session.roomInfo.title,
             roomNotice: req.session.roomInfo.notice
         });
         console.log(req.params.room)

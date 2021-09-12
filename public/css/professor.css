@@ -26,7 +26,7 @@ html,body{
     width: 80%;
 }
 #navbar{
-    height: 80px;
+    height: 7%;
     width: 100%;
     background-color: black;
 }
@@ -34,13 +34,13 @@ html,body{
     width: 20%;
 }
 #nav-center1{
-    width: 30%;
+    width: 56%;
     justify-content: center;
 }
-#nav-center2{
+/* #nav-center2{
     width: 30%;
     justify-content: center;
-}
+} */
 #nav-right{
     width: 20%;
     justify-content: flex-end;
@@ -65,7 +65,7 @@ html,body{
     flex-wrap: wrap;
     align-content: flex-start;
     width: 100%;
-    height: 90%;
+    height: 93%;
 }
 
 #main-container-left {
@@ -102,4 +102,28 @@ html,body{
 
 .swal-footer {
     text-align: center;
+}
+
+#notice{
+    background-color: whitesmoke;
+    border:2px solid gray;
+    height: 20%;
+}
+
+#noticeT{
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration: underline; 
+    text-underline-position:under;
+    text-align: center;
+}
+
+#notice p{
+    margin: 15px;
+}
+
+#title{
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
 }
