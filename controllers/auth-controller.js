@@ -18,6 +18,7 @@ module.exports.auth=function(req,res){
             if(pw==decryptedString){
               console.log("login");
               req.session.user={
+                uid: results[0].uID,
                 id: id,
                 name: results[0].userName,
                 authorized: true
