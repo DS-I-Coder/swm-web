@@ -4,11 +4,13 @@ const router = express.Router();
 const {
     v4: uuidV4
 } = require('uuid');
+const { query } = require('express');
 
 router.get('/', function (req, res) {
     if (req.session.user) res.redirect('/main');
     else res.render('main.html');
 });
+
 
 router.get('/login', function (req, res) {
     res.render('authpage/login.html');
@@ -17,6 +19,7 @@ router.get('/login', function (req, res) {
 router.get('/register', function (req, res) {
     res.render('authpage/register.html');
 });
+
 router.get('/main', function (req, res) {
     if (!req.session.user) res.redirect('/login');
     else {
@@ -28,6 +31,8 @@ router.get('/main', function (req, res) {
         });
     }
 });
+
+
 
 router.get("/logout", function (req, res) {
     if (req.session.user) {
@@ -101,16 +106,47 @@ router.get('/room/:room', (req, res) => {
     if (!user) {
         res.redirect('/login');
     } else {
+        
         res.render('room/professor', {
             roomID: req.params.room,
             userName: user.name,
             //아래로 추가
             roomTitle: req.session.roomInfo.title,
             roomNotice: req.session.roomInfo.notice
+            
         });
+        
         console.log(req.params.room)
         console.log(user.name) 
     } 
+});
+
+
+
+router.get('/mypage', function (req, res) {
+    if (!req.session.user) res.redirect('/login');
+    
+    else {
+        connection.query('SELECT * FROM users WHERE uid=?;',req.session.user.uid,
+        function(err,result,fields){
+            if(err){
+                console.log(err);
+            }
+            else{
+                page= res.render('mypage',{
+                    userid: req.session.user.id,
+                    username:req.session.user.name,
+                    list:result,
+                });
+                console.log(result)
+
+            }
+        });
+
+        console.log(req.session);
+        console.log('userid:', req.session.user.id);
+
+    }
 });
 
 module.exports = router;
