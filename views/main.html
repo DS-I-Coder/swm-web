@@ -1,240 +1,210 @@
 <DOCTYPE HTML5>
   <html>
-    <head>
-      <link rel="stylesheet" type="text/css" href="/css/main2.css" >
-      <link rel="stylesheet" type="text/css" href="/css/search.css" >
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    </head>
-  
-    <body>
-  
-  
-      <div id="background">
-        <div id="pinkrectangle"></div>
-        <div id="bluerectangle"></div>
-      </div>
-  
-  <!-- 헤더 -->
-  
-      <header>
-          <nav id='top'>
-            <ul class="topmenu">
-              <li><h3 id="logo">Study With Me!</h3></li>
-              <li><a id="home">Home</a></li>
-              <li><a id="record">Record</a></li>
-              <li><a id="about">About</a></li>
-              <li><a id="contact">Contact</a></li>
-            </ul>
-        </nav>
-  
-        <div id="register">
-          <button id="login" type="button" onclick="location.href='/login'">Login</button>
-          <button id="join" type="button" onclick="location.href='/register'">JOIN US &nbsp →</button>
-        </div>
-      </header>
-  
-  
-  <!-- 가운데 로고, 버튼-->
-      
-  <div id="center">
-    <div id="centerlogo">
-  
-      <h5 id="logotag">Online Study Room</h5>
-      <h1 id="mainlogo"> Study <br> With Me! <br> on Online!</h1>
-      <h4 id="subtitle">It's better to study together more than alone</h4>
-  
-      <div id='btncenter'>
-        <button id="btnmakeroom" type="button" onclick="location.href='/room/roominfo'">Make Room</button>
-        <button id="gotosearch" type="button" onclick="location.href='#search';">Search</button>
-      </div>
-  
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/main2.css">
+    <link rel="stylesheet" type="text/css" href="/css/search.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet">
+
+    <script>
+      const TODAY_RANK = '<%= rankuser %>';
+    </script>
+    <script defer src="/js/main.js"></script>
+  </head>
+
+  <body>
+
+
+    <div id="background">
+      <div id="pinkrectangle"></div>
+      <div id="bluerectangle"></div>
     </div>
-  </div>
-  
-  <!-- 누적시간 랭킹 -->
-  
-  <div id="todaylanking">
-  
-    <h2 id="lankingtitle">Today's Lanking</h2>
-  
-    <div class="box" id="lankingbox1">
+
+    <!-- 헤더 -->
+
+    <header>
+      <nav id='top'>
+        <ul class="topmenu">
+          <li>
+            <h3 id="logo">Study With Me!</h3>
+          </li>
+          <li><a id="home">Home</a></li>
+          <li><a id="record">Record</a></li>
+          <li><a id="about">About</a></li>
+          <li><a id="contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div id="register">
+        <button id="login" type="button" onclick="location.href='/login'">Login</button>
+        <button id="join" type="button" onclick="location.href='/register'">JOIN US &nbsp →</button>
+      </div>
+    </header>
+
+
+    <!-- 가운데 로고, 버튼-->
+
+    <div id="center">
+      <div id="centerlogo">
+
+        <h5 id="logotag">Online Study Room</h5>
+        <h1 id="mainlogo"> Study <br> With Me! <br> on Online!</h1>
+        <h4 id="subtitle">It's better to study together more than alone</h4>
+
+        <div id='btncenter'>
+          <button id="btnmakeroom" type="button" onclick="location.href='/room/roominfo'">Make Room</button>
+          <button id="gotosearch" type="button" onclick="location.href='#search';">Search</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 누적시간 랭킹 -->
+
+    <div id="todaylanking">
+
+      <h2 id="lankingtitle">Today's Lanking</h2>
+
+      <div class="box" id="lankingbox1">
+        <% rankuser.slice(0,4).forEach(function(item, index){ %>
         <div class="lanking" id="lanking1">
-            <h3 class="name" id="name1">1. abc 님</h3>
+          <h3 class="name" id="name1"><%= index+1 %>. <%= item.userName %> 님</h3>
+          <hr class="redhr">
+          <p class="time" id="time1">00 : 00 : 00</p>
+          <p class="tag" id="tag1">#<%= item.category %></p>
+        </div>
+        <%  })%>
+      </div>
+
+
+      <div class="box" id="lankingbox2">
+        <% rankuser.slice(4,8).forEach(function(item, index){ %>
+          <div class="lanking" id="lanking1">
+            <h3 class="name" id="name1"><%= index+5 %>. <%= item.userName %> 님</h3>
             <hr class="redhr">
             <p class="time" id="time1">00 : 00 : 00</p>
-            <p class="tag" id="tag1">#대학수학능력시험</p>
-        </div>
-  
-        <div class="lanking" id="lanking2">
-            <h3 class="name" id="name2">1. abc 님</h3>
-            <hr class="redhr">
-            <p class="time" id="time2">00 : 00 : 00</p>
-            <p class="tag" id="tag2">#대학수학능력시험</p>
-        </div>
-  
-        <div class="lanking" id="lanking3">
-            <h3 class="name" id="name3">1. abc 님</h3>
-            <hr class="redhr">
-            <p class="time" id="time3">00 : 00 : 00</p>
-            <p class="tag" id="tag3">#대학수학능력시험</p>
-        </div>
-  
-        <div class="lanking" id="lanking4">
-            <h3 class="name" id="name4">1. abc 님</h3>
-            <hr class="redhr">
-            <p class="time" id="time4">00 : 00 : 00</p>
-            <p class="tag" id="tag4">#대학수학능력시험</p>
-        </div>
-    </div>
-  
-  
-    <div class="box" id="lankingbox2">
-        <div class="lanking" id="lanking5">
-            <h3 class="name" id="name5">1. abc 님</h3>
-            <hr class="redhr">
-            <p class="time" id="time5">00 : 00 : 00</p>
-            <p class="tag" id="tag5">#대학수학능력시험</p>
-        </div>
-  
-        <div class="lanking" id="lanking6">
-            <h3 class="name" id="name6">1. abc 님</h3>
-            <hr class="redhr">
-            <p class="time" id="time6">00 : 00 : 00</p>
-            <p class="tag" id="tag6">#대학수학능력시험</p>
-        </div>
-  
-        <div class="lanking" id="lanking7">
-            <h3 class="name" id="name7">1. abc 님</h3>
-            <hr class="redhr">
-            <p class="time" id="time7">00 : 00 : 00</p>
-            <p class="tag" id="tag7">#대학수학능력시험</p>
-        </div>
-  
-        <div class="lanking" id="lanking8">
-            <h3 class="name" id="name8">1. abc 님</h3>
-            <hr class="redhr">
-            <p class="time" id="time8">00 : 00 : 00</p>
-            <p class="tag" id="tag8">#대학수학능력시험</p>
-        </div>
-    </div>
-  </div>
-  
-  <!-- 방 검색 -->
-  
-  <div id="search">
-    <div id="searchtxt">
-      <h6 id="searchtag">Let's study!</h6>
-      <h1 id="searchtitle">Search Study Room</h1>
-      <p id="searchsubtitle">Search what you want to join in</p>
-    </div>
-    <div id="searchbar">
-      <input type="text" id="searchinput" placeholder="Study Room">
-      <button id="searchbtn" type="button" onclick="location.href='/search'">Search</button>
-    </div>
-  </div>
-  
-  
-  <!-- 로고(그림) -->
-  
-  <div id="introduce">
-  
-    <div id="logoicon">
-      <div class="logoicon" id="iconbottom"></div>
-      <div class="logoicon" id="icontop">SWM</div>
-    </div>
-  
-    <div id="abouttxt">
-      <hr id="hrabout">
-      <h2 id="aboutswm">About, <br>SWM</h2>
-      <p id="aboutsub">introduce what is “Study with Me!”</p>
-      <a id="more">Learn More &nbsp&nbsp  〉</a>
-    </div>
-  
-  
-  <!-- 방 목록 -->
-    <div id="studyroomlist">
-  
-      <div id="roomlisttxt"> 
-        <h2 id="roomlisttitle">Study Room List</h2>
-        <p id="roomlistitlesub">Look up Best Study Room</p>
-      </div>
-  
-      <div class="roomlist" id="roomlist">
-        <div class="room" id="room1">
-          <div class="roomimage">
-            <div class="roomname">
-              <p>토익 900</p>
-            </div>
+            <p class="tag" id="tag1">#<%= item.category %></p>
           </div>
-        </div>
-  
-        <div class="room" id="room2">
-          <div class="roomimage">
-            <div class="roomname">
-              <p>중간고사 D-20</p>
-            </div>
-          </div>
-        </div>
-  
-        <div class="room" id="room3">
-          <div class="roomimage">
-            <div class="roomname">
-              <p>토익 900</p>
-            </div>
-          </div>
-        </div>
-  
-        <div class="room" id="room4">
-          <div class="roomimage">
-            <div class="roomname">
-              <p>토익 900</p>
-            </div>
-          </div>
-        </div>
-  
-  
-  
-        <div class="room" id="room5">
-          <div class="roomimage">
-            <div class="roomname">
-              <p></p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="room" id="room6">
-          <div class="roomimage">
-            <div class="roomname">
-              <p></p>
-            </div>
-          </div>
-        </div>
-  
-        <div class="room" id="room7">
-          <div class="roomimage">
-            <div class="roomname">
-              <p></p>
-            </div>
-          </div>
-        </div>
-  
-        <div class="room" id="room8">
-          <div class="roomimage">
-            <div class="roomname">
-              <p></p>
-            </div>
-          </div>
+          <%  })%>
         </div>
       </div>
-  
     </div>
-  
-  
-  </div>
-  
-      
-    </body>
-  </html>
 
+    <!-- 방 검색 -->
+
+    <div id="search">
+      <div id="searchtxt">
+        <h6 id="searchtag">Let's study!</h6>
+        <h1 id="searchtitle">Search Study Room</h1>
+        <p id="searchsubtitle">Search what you want to join in</p>
+      </div>
+      <form action="/search" method="GET">
+        <div id="searchbar">
+          <input type="text" id="searchinput" name="searchinput" placeholder="Study Room">
+          <!-- <button id="searchbtn" type="button" onclick="location.href='/search'">Search</button> -->
+          <button id="searchbtn" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+
+
+    <!-- 로고(그림) -->
+
+    <div id="introduce">
+
+      <div id="logoicon">
+        <div class="logoicon" id="iconbottom"></div>
+        <div class="logoicon" id="icontop">SWM</div>
+      </div>
+
+      <div id="abouttxt">
+        <hr id="hrabout">
+        <h2 id="aboutswm">About, <br>SWM</h2>
+        <p id="aboutsub">introduce what is “Study with Me!”</p>
+        <a id="more">Learn More &nbsp&nbsp 〉</a>
+      </div>
+
+
+      <!-- 방 목록 -->
+      <div id="studyroomlist">
+
+        <div id="roomlisttxt">
+          <h2 id="roomlisttitle">Study Room List</h2>
+          <p id="roomlistitlesub">Look up Best Study Room</p>
+        </div>
+
+        <div class="roomlist" id="roomlist">
+          <div class="room" id="room1">
+            <div class="roomimage">
+              <div class="roomname">
+                <p>토익 900</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="room" id="room2">
+            <div class="roomimage">
+              <div class="roomname">
+                <p>중간고사 D-20</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="room" id="room3">
+            <div class="roomimage">
+              <div class="roomname">
+                <p>토익 900</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="room" id="room4">
+            <div class="roomimage">
+              <div class="roomname">
+                <p>토익 900</p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="room" id="room5">
+            <div class="roomimage">
+              <div class="roomname">
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="room" id="room6">
+            <div class="roomimage">
+              <div class="roomname">
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="room" id="room7">
+            <div class="roomimage">
+              <div class="roomname">
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="room" id="room8">
+            <div class="roomimage">
+              <div class="roomname">
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  </html>
