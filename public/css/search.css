@@ -106,6 +106,7 @@ body{
 }
 #roomResultBox{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     padding: 0px;
@@ -116,15 +117,24 @@ body{
 #searchedRoom{
     width: 354px;
     height: 323px;
-    margin: 0px 50px;
+    margin: 0px 50px 40px 50px;
 }
 
-#roomResultBox p{
+#searchedRoom h2{
     margin-top: 30px;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
 }
+
+#searchedRoom p{
+  margin-top: 8px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #999FAA;
+}
+
 #roomImg{
     background-color:antiquewhite;
     width: 354px;
