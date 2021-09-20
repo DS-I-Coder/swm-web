@@ -18,12 +18,12 @@ module.exports.auth=function(req,res){
             if(pw==decryptedString){
               console.log("login");
               req.session.user={
+                uid: results[0].uID,
                 id: id,
                 name: results[0].userName,
                 authorized: true
               };
-              console.log(req.session.user);
-                res.redirect("/main");
+                res.redirect(req.session.url);
             }else{
 
               res.send('<script type="text/javascript">alert("아이디와 비밀번호를 확인해주세요"); document.location.href="/login"; </script>');

@@ -8,26 +8,38 @@ function removeGreen(ele) {
 const exitRoomBtn = document.getElementById('out');
 exitRoomBtn.addEventListener('click', () => { /*뒤로가기 버튼*/
     swal({
-        title: "수업을 종료하시겠습니까?",
-        text: "학생이 남아있는 경우,\n모두 퇴장됩니다.",
+        title: "메인화면으로 돌아갑니다.",
+        text: "정말 퇴장하시겠습니까?",
         icon: "warning",
         buttons: ['아니오', '예'],
         dangerMode: true,
     })
     .then((value) => {
+        // if (value) {
+        //     socket.emit('message', {
+        //         event: 'closeRoom',
+        //         roomid: ROOM_ID,
+        //     });
+        //     closeRoom();
+        // }
+        
         if (value) {
-            socket.emit('message', {
-                event: 'closeRoom',
-                roomid: ROOM_ID,
-            });
-            closeRoom();
+            // socket.emit('message', {
+            //     // event: 'closeRoom',
+            //     event: 'disconnect',
+            //     //roomid: ROOM_ID,
+            // });
+            socket.emit('disconnect')
+            //closeRoom();
+            location.href = '/main';    
         }
     });
 });
 
 function closeRoom() {
+    console.log('function closeRoom')
     swal({
-        title: "수업이 종료되었습니다.",
+        title: ".",
         text: "메인 화면으로 돌아갑니다.",
         button: "확인",
     })

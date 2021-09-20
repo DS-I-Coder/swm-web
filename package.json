@@ -25,8 +25,9 @@
     "express-session": "^1.17.1",
     "kurento-client": "^6.14.0",
     "minimist": "^1.2.5",
+    "multer": "^1.4.3",
     "mysql": "^2.18.1",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.1",
     "uuid": "^8.3.1"
   },
   "devDependencies": {

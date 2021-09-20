@@ -27,7 +27,7 @@ html,body{
     width: 80%;
 }
 #navbar{
-    height: 80px;
+    height: 7%;
     width: 100%;
     background-color: black;
 }
@@ -35,13 +35,17 @@ html,body{
     width: 20%;
 }
 #nav-center1{
+<<<<<<< HEAD
     width: 60%;
+=======
+    width: 56%;
+>>>>>>> a8a29fa91839af656798e992d26759462ba38619
     justify-content: center;
 }
-#nav-center2{
+/* #nav-center2{
     width: 30%;
     justify-content: center;
-}
+} */
 #nav-right{
     width: 20%;
     justify-content: flex-end;
@@ -66,7 +70,7 @@ html,body{
     flex-wrap: wrap;
     align-content: flex-start;
     width: 100%;
-    height: 90%;
+    height: 93%;
 }
 
 #main-container-left {
@@ -80,12 +84,13 @@ html,body{
 /* #my-cam-container{
     width: 100%;
     height: 30%;
-}
+}*/
 #my-cam{
-    width: 100%;
+    /* width: 100%;
     height: 100%;
-    background-color: black;
-} */
+    background-color: black; */
+    /*filter: blur(10px);*/
+} 
 
 .over{
     z-index: 1;
@@ -105,23 +110,26 @@ html,body{
     text-align: center;
 }
 
-#notice-box{
-    background-color: white;
-    font-size:14px;
-    font-weight: 300;
+#notice{
+    background-color: whitesmoke;
+    border:2px solid gray;
     height: 20%;
-    border: 2px solid black;
-    border-radius: 5px;
 }
 
-#notice{
-    font-size:24px;
+#noticeT{
     font-weight: bold;
+    font-size: 24px;
+    text-decoration: underline; 
+    text-underline-position:under;
     text-align: center;
 }
 
+#notice p{
+    margin: 15px;
+}
+
 #title{
-    color:white;
-    font-size:26px;
-    font-weight: medium;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/search.css">
+    <link rel="stylesheet" type="text/css" href="/css/main2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <title>Search</title>
+
+    <script defer src="/js/search.js"></script>
+</head>
+
+<body>
+    <%- include('../header') %>
+    <div class="search-container">
+        <center>
+            <form action="/search" method="GET">
+                <div id="searchbar">
+                    <input type="text" id="searchinput" name="searchinput" placeholder="Study Room">
+                    <button id="searchbtn" type="submit">Search</button>
+                </div>
+            </form>
+            <div class="roomMainBox">
+                <div id="roomResultBox">
+                    <% results.forEach(function(room, index){ %>
+                    <div id="searchedRoom">
+                        <a href='/room/<%= room.uuid %>'>
+                            <div id="roomImg" onclick="joinRoom()"></div>
+                        </a>
+                        <div class="roomTitle" >
+                            <h2><%= room.roomTitle %></h2>
+                            <p># <%= room.roomCategory %></p>
+                        </div>
+                    </div>
+                    <% })%>
+                </div>
+            </div>
+            <div id="search-footer">
+                <p><%= results.length %> results</p>
+            </div>
+        </center>
+    </div>
+</body>
+
+</html>

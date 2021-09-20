@@ -24,8 +24,8 @@
     <script>
         const ROOM_ID = '<%= roomID %>';
         const USER_NAME = '<%= userName %>';
-        const ROOM_TITLE = '<%= roomTitle %>';
-        const ROOM_NOTICE = '<%= roomNotice %>'; // 필요없는 거 같기도.
+        const ROOM_TITOE = '<%= roomTitle %>';
+        const ROOM_NOTICE = '<%= roomNotice %>';
     </script>
 
     <style>
@@ -53,11 +53,9 @@
                         title="마이크"></i></button>
                 <button id="camera" class="nav-button"><i class="fas fa-camera fa-2x nav-icon"></i></button>
             </div>
+
             <div id="nav-right" class="flex-row">
-                <div id="title-box">
-                    <p id="title"><%= roomTitle %></p>
-                    <p></p>
-                </div>
+                <p id="title"><%= roomTitle %></p>
             </div>
         </nav>
         <div id="video-grid">
@@ -70,8 +68,8 @@
         <!-- <div id="my-cam-container">
             <video id="my-cam" preload="metadata" autoplay muted></video>
         </div> -->
-        <div id = "notice-box">
-            <p id="notice">⚜NOTICE⚜</p><br>
+        <div id = "notice">
+            <p id="noticeT">NOTICE</p><br>
             <p><%= roomNotice %></p>
         </div>
 

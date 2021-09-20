@@ -1,18 +1,25 @@
+faceapi.nets.tinyFaceDetector.loadFromUri('/js/util/models');
+faceapi.nets.faceLandmark68Net.loadFromUri('/js/util/models');
+faceapi.nets.faceRecognitionNet.loadFromUri('/js/util/models');
+faceapi.nets.faceExpressionNet.loadFromUri('/js/util/models');
+
+
 const myVideo = document.getElementById('my-cam');
 const userName = USER_NAME;
 const participants = {};
 const context = {}; // 내 비디오 제외 원격 비디오 2d context를 userid별로 받음.
-var interval = {}; 
+var interval = {};
 const videoGrid = document.getElementById('video-grid');
 
 const socket = io();
 
-Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri('/js/util/models'),
-    faceapi.nets.faceLandmark68Net.loadFromUri('/js/util/models'),
-    faceapi.nets.faceRecognitionNet.loadFromUri('/js/util/models'),
-    faceapi.nets.faceExpressionNet.loadFromUri('/js/util/models')
-]).then() //connect 오류
+// Promise.all([
+//     faceapi.nets.tinyFaceDetector.loadFromUri('/js/util/models'),
+//     faceapi.nets.faceLandmark68Net.loadFromUri('/js/util/models'),
+//     faceapi.nets.faceRecognitionNet.loadFromUri('/js/util/models'),
+//     faceapi.nets.faceExpressionNet.loadFromUri('/js/util/models')
+// ]).then(play) //connect 오류
+
 
 //
 const constraints = {
@@ -39,15 +46,16 @@ function userDisconnected(userid) {
     if (participants[userid]) {
         const video = document.getElementById(userid);
         video.parentElement.remove();
-        
+
         clearInterval(interval[userid]);
-        context[userid].context2d.clearRect(0,0,context[userid].width, context[userid].height);
+        context[userid].context2d.clearRect(0, 0, context[userid].width, context[userid].height);
         context[userid] = null;
 
-        const msg = document.createElement('div');
-        msg.innerText = `${participants[userid].username}님이 퇴장하셨습니다.`;
-        msg.classLists.add('system');
-        chatView.append(msg);
+        // TODO: 메세지 오류 수정
+        // const msg = document.createElement('div');
+        // msg.innerText = `${participants[userid].username}님이 퇴장하셨습니다.`;
+        // msg.classLists.add('system');
+        // chatView.append(msg);
         delete participants[userid];
     }
 }
@@ -131,21 +139,23 @@ function receiveVideo(userid, username) {
             context2d: canvas.getContext('2d'),
             width: canvas.width,
             height: canvas.height
-        } 
-        
+        }
+        console.log('check////');
         const waitingImage = new Image();
         waitingImage.src = '/js/util/emoji/rec.png';
         waitingImage.addEventListener('load', e => {
+            console.log('waiting image load')
             context[userid].context2d.clearRect(0, 0, canvas.width, canvas.height);
-            context[userid].context2d.drawImage(waitingImage, 0, 0, video.width, video.height);
+            context[userid].context2d.drawImage(waitingImage, 0, 0, video.videoWidth, video.videoHeight);
         });
 
-        interval[userid]= setInterval(async () => {
+        interval[userid] = setInterval(async () => {
             const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
             const resizedDetections = faceapi.resizeResults(detections, displaySize)
 
             if (detections.length > 0) { // 감지가 됐을 때 
                 detections.forEach(element => {
+                    video.style.filter = "";
                     let status = "";
                     let valueStatus = 0.0;
 
@@ -172,18 +182,24 @@ function receiveVideo(userid, username) {
 
                 });
             } else { // 감지 안됐을 때 
-                const img = new Image();
-                img.src = '/js/util/emoji/wait.png';
 
-                img.addEventListener('load', e => {
-                    context[userid].context2d.clearRect(0, 0, canvas.width, canvas.height);
-                    context[userid].context2d.drawImage(img, 0, 0, canvas.width, canvas.height);
-                });
+                /* 이모지 사용 */
+                // const img = new Image();
+                // img.src = '/js/util/emoji/wait.png';
+
+                // img.addEventListener('load', e => {
+                //     context[userid].context2d.clearRect(0, 0, canvas.width, canvas.height);
+                //     context[userid].context2d.drawImage(img, 0, 0, canvas.width, canvas.height);
+                // });
+
+                /* 블러 처리 */
+                context[userid].context2d.clearRect(0, 0, canvas.width, canvas.height);
+                video.style.filter = "blur(15px)";
             }
 
         }, 100)
 
-        
+
     })
 }
 /*****receive 원격 비디오 수신 */
@@ -311,7 +327,8 @@ myVideo.addEventListener('play', () => {
     waitingImage.src = '/js/util/emoji/rec.png';
     waitingImage.addEventListener('load', e => {
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(waitingImage, 0, 0, myVideo.width, myVideo.height);
+        context.drawImage(waitingImage, 0, 0, myVideo.videoWidth, myVideo.videoHeight);
+        // context.drawImage(waitingImage, 0, 0, 300, 300);
     });
 
     setInterval(async () => {
@@ -320,6 +337,7 @@ myVideo.addEventListener('play', () => {
 
         if (detections.length > 0) { // 감지가 됐을 때 
             detections.forEach(element => {
+                myVideo.style.filter = ""; // 블러 제거
                 let status = "";
                 let valueStatus = 0.0;
 
@@ -347,13 +365,20 @@ myVideo.addEventListener('play', () => {
 
             });
         } else { // 감지 안됐을 때 
-            const img = new Image();
-            img.src = '/js/util/emoji/wait.png';
+            
+            /* 이모지 사용 */
 
-            img.addEventListener('load', e => {
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                context.drawImage(img, 0, 0, canvas.width, canvas.height);
-            });
+            // const img = new Image();
+            // img.src = '/js/util/emoji/wait.png';
+
+            // img.addEventListener('load', e => {
+            //     context.clearRect(0, 0, canvas.width, canvas.height);
+            //     context.drawImage(img, 0, 0, canvas.width, canvas.height);
+            // });
+            
+            /* 블러처리 */
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            myVideo.style.filter = "blur(15px)";
         }
     }, 100)
 })
