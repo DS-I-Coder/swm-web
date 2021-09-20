@@ -5,6 +5,7 @@
 }
 
 body {
+    font-family: 'Montserrat', sans-serif;
     min-width: 1100px;
 }
 
@@ -34,7 +35,7 @@ html,body{
     width: 20%;
 }
 #nav-center1{
-    width: 30%;
+    width: 60%;
     justify-content: center;
 }
 #nav-center2{
@@ -102,4 +103,25 @@ html,body{
 
 .swal-footer {
     text-align: center;
+}
+
+#notice-box{
+    background-color: white;
+    font-size:14px;
+    font-weight: 300;
+    height: 20%;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#notice{
+    font-size:24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#title{
+    color:white;
+    font-size:26px;
+    font-weight: medium;
 }
