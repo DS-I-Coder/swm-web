@@ -1,23 +1,27 @@
 <DOCTYPE HTML5>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="/css/mypage.css" >
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    </head>
+  <html>
 
-    <body>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/mypage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet">
 
-        <header>
-        </header>
+    <script defer src="/js/mypage.js"></script>
+  </head>
 
-        <div id="logoicon">
-            <div class="logoicon" id="iconbottom"></div>
-            <div class="logoicon" id="icontop">SWM</div>
-        </div>
+  <body>
 
-        <!-- <div id="myinfo">
+    <header>
+    </header>
+
+    <div id="logoicon">
+      <div class="logoicon" id="iconbottom"></div>
+      <div class="logoicon" id="icontop">SWM</div>
+    </div>
+
+    <!-- <div id="myinfo">
             <div class="info" id="info_nickname">
                 <h2 class="infotxt" id="nicknametxt">닉네임</h2>
                 <h2 class="infodata" id="nickname">USER<h2>
@@ -32,48 +36,75 @@
             </div>
         </div> -->
 
-        <div id="myinfo">
-            <div class="infotxt">
-                <h2 class="info" id="nicknametxt">닉네임</h2>
-                <h2 class="info" id="agetxt">나이</h2>
-                <h2 class="info" id="fieldtxt">공부분야</h2>
-            </div>
+    <div id="myinfo">
+      <div class="infotxt">
+        <h2 class="info" id="nicknametxt">닉네임</h2>
+        <h2 class="info" id="agetxt">나이</h2>
+        <h2 class="info" id="fieldtxt">공부분야</h2>
+      </div>
 
-            <div class="infodata">
-                <h2 class="myinfo" id="nicknamedata"><%= username %></h2>
-                <h2 class="myinfo" id="agedata"><%= list[0].userAge %></h2>
-                <h2 class="myinfo" id="fielddata"><%= list[0].category %></h2>
-            </div>
+      <div class="infodata">
+        <h2 class="myinfo" id="nicknamedata"><%= username %></h2>
+        <h2 class="myinfo" id="agedata"><%= list[0].userAge %></h2>
+        <h2 class="myinfo" id="fielddata"><%= list[0].category %></h2>
+      </div>
+<!-- 
+      <div>
+        <form action="/emoji" method="POST" enctype="multipart/form-data">
+          <input type="file" name="img">
+          <input type="submit" value="확인">
+        </form>
+      </div> -->
+    </div>
+
+    <div id="record">
+      <div id="record_title">
+        <h2 id="record_name"><%= username %></h2>
+        <h2>님 공부 기록</h2>
+      </div>
+
+      <div id="recordbox">
+        <div class="box" id="today_box">
+          <div class="imagebox" id="today_image"> <img src="/images/today_image.png" alt="today Image"></div>
+          <h4>Today Record</h4>
+          <hr>
+          <h2>00:00:00</h2>
         </div>
 
-        <div id="record">
-            <div id="record_title">
-                <h2 id="record_name"><%= username %></h2><h2>님 공부 기록</h2>
-            </div>
-
-            <div id="recordbox">
-                <div class="box" id="today_box">
-                    <div class="imagebox" id="today_image">	<img src="/images/today_image.png" alt="today Image"></div>
-                    <h4>Today Record</h4>
-                    <hr>
-                    <h2>00:00:00</h2>
-                </div>
-
-                <div class="box" id="week_box">
-                    <div class="imagebox" id="week_image"><img src="/images/week_image.png" alt="week Image"></div>
-                    <h4>This Week Record</h4>
-                    <hr>
-                    <h2>00:00:00</h2>
-                </div>
-
-                <div class="box" id="month_box">
-                    <div class="imagebox" id="month_image"><img src="/images/month_image.png" alt="month Image"></div>
-                    <h4>This Month Record</h4>
-                    <hr>
-                    <h2>00:00:00</h2>
-                </div>
-            </div>
+        <div class="box" id="week_box">
+          <div class="imagebox" id="week_image"><img src="/images/week_image.png" alt="week Image"></div>
+          <h4>This Week Record</h4>
+          <hr>
+          <h2>00:00:00</h2>
         </div>
-    </body>
 
-</html>
+        <div class="box" id="month_box">
+          <div class="imagebox" id="month_image"><img src="/images/month_image.png" alt="month Image"></div>
+          <h4>This Month Record</h4>
+          <hr>
+          <h2>00:00:00</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="studylist">
+      <div id="record_title">
+        <h2 id="record_name"><%= username %>님의 스터디룸</h2>
+      </div>
+      <div class="inner">
+        <% if (list[0].rID != null){
+          list.forEach(function(myroom){ %>
+        <div class="inner__item">
+          <h2><%= myroom.roomTitle %></h2>
+          <!-- <a href='/delete/<%= myroom.rID %>'>삭제</a> -->
+          <button class="btn btn--delete" id="delete" onclick="deleteClicked('<%= myroom.rID %>')">삭제</button>
+          <!-- <a href="javascript:void(0)">입장</a> -->
+          <button class="btn btn--enter">입장</button>
+        </div>
+        <% })} %>
+      </div>
+    </div>
+
+  </body>
+
+  </html>

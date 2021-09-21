@@ -1,12 +1,34 @@
 const express = require('express');
 const connection = require('./../config');
 const router = express.Router();
+const fs = require('fs');
+const multer = require('multer')
+const path = require('path');
+const upload = multer({
+    storage: multer.diskStorage({ // diskStorage가 로컬 저장.
+        destination(req, file, cb) {
+            cb(null, "/images");
+        },
+        filename(req, file, cb) {
+            //const ext = path.extname(file.originalname);
+            //cb(null, path.basename(file.originalname, ext))
+            cb(null, file.originalname);
+        }
+    }),
+    limits: {
+        fileSize: 5 * 1024 * 1024
+    }
+});
+
+
 const {
     v4: uuidV4
 } = require('uuid');
 const {
     query
 } = require('express');
+const { Socket } = require('dgram');
+const { fstat } = require('fs');
 
 router.get('/', function (req, res) {
     if (req.session.user) res.redirect('/main');
@@ -35,18 +57,18 @@ router.get('/main', function (req, res) {
                 if (!req.session.user) {
                     //res.redirect('/login');
                     res.render('main.html', {
-                        rankuser: rows,
-                        //userid: req.session.user.id,
+                        flag: false,
+                        rankuser: rows
                         //userName: req.session.user.name
                     });
 
                 } else {
                     console.log(req.session);
-                    console.log('userid:', req.session.user.id);
                     res.render('main.html', {
+                        flag: true,
                         rankuser: rows,
-                        //userid: req.session.user.id,
-                        //userName: req.session.user.name
+                        userid: req.session.user.id,
+                        userName: req.session.user.name
                     });
                 }
             }
@@ -75,7 +97,7 @@ router.get("/logout", function (req, res) {
 
 //roominfo화면으로 넘기기
 router.get('/room/roominfo', function (req, res) {
-    
+
     if (!req.session.user) {
         res.redirect('/login')
     }
@@ -167,25 +189,56 @@ router.get('/mypage', function (req, res) {
     if (!req.session.user) res.redirect('/login');
 
     else {
-        connection.query('SELECT * FROM users WHERE uid=?;', req.session.user.uid,
+        connection.query('SELECT * FROM room r RIGHT JOIN users u ON r.host = u.uid where uid = ?;', req.session.user.uid,
             function (err, result, fields) {
                 if (err) {
                     console.log(err);
                 } else {
-                    page = res.render('mypage', {
-                        userid: req.session.user.id,
-                        username: req.session.user.name,
-                        list: result,
-                    });
-                    console.log(result)
-
+                            page = res.render('mypage', {
+                                userid: req.session.user.id,
+                                username: req.session.user.name,
+                                list: result
+                            });
                 }
-            });
-
-        console.log(req.session);
+            }
+        );
+        //console.log(req.session);
         console.log('userid:', req.session.user.id);
 
     }
 });
 
+router.get('/delete/:rID', function (req, res) {
+    console.log(req.params.rID);
+    
+    if (!req.session.user) res.redirect('/login');
+    else {
+        connection.query(
+            'DELETE FROM room WHERE rID = ?;', req.params.rID,
+            function (err, rows, fields) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.redirect('/mypage');
+                }
+            }
+        );
+    }
+})
+
+/****** */
+router.post('/emoji', upload.single('img'), (req, res) => {
+    console.log(req.file);
+    connection.query(
+        'UPDATE users SET `userPicture` = ? WHERE (`uID` = ?)', [ '/images/' + req.file.filename,req.session.user.uid],
+        function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(rows);
+                res.redirect('/mypage');
+            }
+        }
+    )
+})
 module.exports = router;
