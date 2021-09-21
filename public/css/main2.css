@@ -1,11 +1,13 @@
-*{
+* {
   margin: 0px;
   padding: 0px;
 }
-html{
+
+html {
   scroll-behavior: smooth;
 }
-body{
+
+body {
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -22,23 +24,23 @@ html{
   background: #FFDCD1;
 }
 
-#bluerectangle{
+#bluerectangle {
   position: absolute;
   width: 45%;
   height: 85%;
   right: 0px;
   top: 0px;
   background: #E2F5FF;
-  
+
 }
 
 
 /* 헤더 */
-header{
+header {
   height: 95px
 }
 
-#logo{
+#logo {
   font-size: 24px;
   line-height: 32px;
   font-weight: 700;
@@ -49,7 +51,7 @@ header{
 }
 
 
-.topmenu{
+.topmenu {
   left: 195px;
   top: 30px;
   font-weight: 700;
@@ -57,37 +59,24 @@ header{
   line-height: 24px;
   position: absolute;
   color: #737373;
-  float:left;
-  text-align: center; 
-  list-style:none;
-}
-
-.topmenu li{
   float: left;
-  padding-right:45px;
-  padding-top:5px;
+  text-align: center;
+  list-style: none;
 }
 
-#register{
-  position:absolute;
-  top:30px;
-  right:230px
+.topmenu li {
+  float: left;
+  padding-right: 45px;
+  padding-top: 5px;
 }
 
-#login{
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 22px;
-  text-align: right;
-  letter-spacing: 0.2px;
-  color: #23A6F0;
-  margin-right: 30px;
-  text-decoration-line:none;
-  background: none;
-  border: none;
+#nav_user {
+  position: absolute;
+  top: 30px;
+  right: 230px
 }
 
-#join{
+#nav_user .nav-button {
   /* display: flex;
   flex-direction: row; */
   align-items: center;
@@ -104,15 +93,85 @@ header{
   color: #FFFFFF;
 }
 
+#login {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: right;
+  letter-spacing: 0.2px;
+  color: #23A6F0;
+  margin-right: 30px;
+  text-decoration-line: none;
+  background: none;
+  border: none;
+}
 
+#join {
+  /* display: flex;
+  flex-direction: row; */
+  align-items: center;
+  padding: 10px 20px;
+  width: 130px;
+  height: 50px;
+  background: #23A6F0;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  /* line-height: 22px; */
+  letter-spacing: 0.2px;
+  color: #FFFFFF;
+}
+
+#username {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: right;
+  letter-spacing: 0.2px;
+  color: #23A6F0;
+  margin-right: 30px;
+  text-decoration-line: none;
+  background: none;
+  border: none;
+}
+
+
+#mypage {
+  /* display: flex;
+  flex-direction: row; */
+  align-items: center;
+  padding: 10px 20px;
+  width: 130px;
+  height: 50px;
+  background: #23A6F0;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  /* line-height: 22px; */
+  letter-spacing: 0.2px;
+  color: #FFFFFF;
+  
+}
+
+#logout{
+  display: none;
+  position: fixed;
+  height: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}
+#logout:hover{
+  cursor: pointer;
+}
 
 /* 가운데 로고 */
-#center{
+#center {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 80px 0px;
-
   position: absolute;
   width: 686px;
   height: 706px;
@@ -120,7 +179,7 @@ header{
   top: 40px;
 }
 
-#centerlogo{
+#centerlogo {
   position: absolute;
   width: 686px;
   height: 546px;
@@ -134,10 +193,10 @@ header{
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  
+
 }
 
-#logotag{
+#logotag {
   position: static;
   width: 170px;
   height: 24px;
@@ -154,7 +213,7 @@ header{
 
 }
 
-#mainlogo{
+#mainlogo {
   position: static;
   width: 542px;
   height: 240px;
@@ -176,7 +235,7 @@ header{
 
 }
 
-#subtitle{
+#subtitle {
   position: static;
   width: 455px;
   height: 30px;
@@ -194,14 +253,14 @@ header{
 }
 
 /* 가운데 버튼 */
-#btncenter{
-  top:70%;
-  float:left;
+#btncenter {
+  top: 70%;
+  float: left;
   position: absolute;
 
 }
 
-#btnmakeroom{
+#btnmakeroom {
   padding: 15px 40px;
   right: 51.44%;
   background: #23A6F0;
@@ -221,7 +280,7 @@ header{
 
 }
 
-#gotosearch{
+#gotosearch {
   padding: 15px 40px;
   position: static;
   left: 51.44%;
@@ -229,7 +288,7 @@ header{
   border: 1px solid #23A6F0;
   box-sizing: border-box;
   border-radius: 5px;
-  background:transparent;
+  background: transparent;
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -253,7 +312,7 @@ header{
 
 
 /* 누적시간 랭킹 */
-#lankingtitle{
+#lankingtitle {
   font-weight: 700;
   font-size: 36px;
   position: absolute;
@@ -266,7 +325,7 @@ header{
 
 }
 
-.box{
+.box {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -281,28 +340,28 @@ header{
 
 }
 
-#lankingbox1{
+#lankingbox1 {
   top: 130%
 }
 
 
-#lankingbox2{
+#lankingbox2 {
   top: 160%;
 }
 
 /* 누적시간 박스 안 내용 */
-.lanking{
-  padding:0 13px;
+.lanking {
+  padding: 0 13px;
 }
 
-.name{
+.name {
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
   margin-bottom: 8%;
 }
 
-.redhr{
+.redhr {
   background: #E74040;
   width: 190px;
   height: 2px;
@@ -312,7 +371,7 @@ header{
 
 }
 
-.time{
+.time {
   width: 190px;
   height: 20px;
   font-size: 32px;
@@ -324,7 +383,7 @@ header{
 
 }
 
-.tag{
+.tag {
   width: 190px;
   height: 20px;
   font-size: 12px;
@@ -339,26 +398,26 @@ header{
 
 
 /* 로고(그림) */
-#logoicon{
+#logoicon {
   position: absolute;
-  top:260%;
+  top: 260%;
   margin-left: 15%;
   margin-top: 10%;
 }
 
-.logoicon{
+.logoicon {
   width: 408.09px;
   height: 408.09px;
   border-radius: 0px 83.1148px;
 
 }
 
-#iconbottom{
+#iconbottom {
   background: #00087E;
 
 }
 
-#icontop{
+#icontop {
   background: #FDB9C6;
   position: relative;
   top: -430px;
@@ -371,30 +430,30 @@ header{
   letter-spacing: 0.2px;
   color: #252B42;
   align-items: center;
-  display:table-cell;
+  display: table-cell;
 
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
-#abouttxt{
+#abouttxt {
   position: absolute;
-  top:290%;
+  top: 290%;
   left: 60%;
 }
 
-#hrabout{
+#hrabout {
   width: 94px;
   height: 7px;
   border: 0;
   background: #E74040;
 }
 
-#aboutswm{
+#aboutswm {
   width: 142px;
   height: 100px;
   left: 0px;
   top: 42px;
-  font-weight:700;
+  font-weight: 700;
   font-size: 40px;
   line-height: 50px;
   letter-spacing: 0.2px;
@@ -405,7 +464,7 @@ header{
   margin: 35px 0px;
 }
 
-#aboutsub{
+#aboutsub {
   height: 20px;
   left: 0px;
   top: 177px;
@@ -420,13 +479,13 @@ header{
   margin: 35px 0px;
 }
 
-#more{
+#more {
   left: 0%;
   right: 18.81%;
   top: 0%;
   bottom: 0%;
   font-size: 14px;
-  font-weight:700;
+  font-weight: 700;
   line-height: 24px;
   letter-spacing: 0.2px;
   color: #23A6F0;
@@ -435,17 +494,17 @@ header{
 
 
 /* 방 목록 */
-#studyroomlist{
+#studyroomlist {
   top: 350%;
   margin-left: 15%;
 }
 
-#roomlisttxt{
+#roomlisttxt {
   position: absolute;
-  top:370%;
+  top: 370%;
 }
 
-#roomlisttitle{
+#roomlisttitle {
   font-weight: 700;
   font-size: 40px;
   line-height: 50px;
@@ -455,7 +514,7 @@ header{
 
 }
 
-#roomlistitlesub{
+#roomlistitlesub {
   font-weight: 400;
   font-size: 14px;
   color: #737373;
@@ -467,17 +526,17 @@ header{
 
 
 
-.roomlist{
+.roomlist {
   position: absolute;
   top: 390%;
   text-align: center;
   width: 1000px;
-  left:50%;
+  left: 50%;
   margin-left: -500px;
 }
 
 
-.roomimage{
+.roomimage {
   position: relative;
   margin-right: 20px;
   margin-bottom: 40px;
@@ -489,8 +548,8 @@ header{
 
 }
 
-.roomname{
-  margin-top:30px;
+.roomname {
+  margin-top: 30px;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
@@ -501,13 +560,14 @@ header{
   border-radius: 30px;
 }
 
-.roomname p{
+.roomname p {
 
   line-height: 80px;
   font-weight: 700;
   font-size: 40px;
   letter-spacing: 0.2px;
   color: #000000;
+<<<<<<< Updated upstream
 }
 
 /* 검색창 (검색바아님) */
@@ -548,3 +608,6 @@ header{
   font-weight: 500;
   font-size: 24px;
 }
+=======
+}
+>>>>>>> Stashed changes
