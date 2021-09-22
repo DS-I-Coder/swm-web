@@ -6,6 +6,8 @@ function removeGreen(ele) {
 }
 
 const exitRoomBtn = document.getElementById('out');
+const qu=require("../../routes/index.js")
+
 exitRoomBtn.addEventListener('click', () => { /*뒤로가기 버튼*/
     swal({
         title: "메인화면으로 돌아갑니다.",
@@ -31,6 +33,7 @@ exitRoomBtn.addEventListener('click', () => { /*뒤로가기 버튼*/
             // });
             socket.emit('disconnect')
             //closeRoom();
+            qu.timeupdate;
             location.href = '/main';    
         }
     });

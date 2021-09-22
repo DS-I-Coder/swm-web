@@ -30,6 +30,9 @@ const {
 const { Socket } = require('dgram');
 const { fstat } = require('fs');
 
+
+
+
 router.get('/', function (req, res) {
     if (req.session.user) res.redirect('/main');
     else res.redirect('/main');
@@ -181,6 +184,12 @@ router.get('/room/:room', (req, res) => {
             }
         )
     }
+        
+        
+
+
+        
+
 });
 
 
@@ -241,4 +250,24 @@ router.post('/emoji', upload.single('img'), (req, res) => {
         }
     )
 })
+
+
+// if(stopwatch.obj.checked==true){
+//     datatodb(10);
+//     console.log(obj.cheked)
+// }
+
+const timeupdate= connection.query('UPDATE acctime SET weekAccTime=?, monthAccTime=?, dayAccTime=? WHERE uID=?',[10,10,50,10],
+function(err,result,fields){
+    if(err){
+        console.log(err);
+    }
+        console.log(result)
+
+});
+
+
+
 module.exports = router;
+
+

@@ -11,6 +11,7 @@ const context = {}; // 내 비디오 제외 원격 비디오 2d context를 useri
 var interval = {};
 const videoGrid = document.getElementById('video-grid');
 
+
 const socket = io();
 
 // Promise.all([
@@ -50,12 +51,14 @@ function userDisconnected(userid) {
         clearInterval(interval[userid]);
         context[userid].context2d.clearRect(0, 0, context[userid].width, context[userid].height);
         context[userid] = null;
+        
 
         // TODO: 메세지 오류 수정
         // const msg = document.createElement('div');
         // msg.innerText = `${participants[userid].username}님이 퇴장하셨습니다.`;
         // msg.classLists.add('system');
         // chatView.append(msg);
+
         delete participants[userid];
     }
 }
@@ -382,3 +385,4 @@ myVideo.addEventListener('play', () => {
         }
     }, 100)
 })
+

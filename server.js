@@ -8,6 +8,11 @@ const { send } = require('process');
 const PORT = process.env.PORT || 3000;
 const router = require(__dirname + '/routes/index.js');
 
+const connection = require('./config.js');
+const { query } = require('express');
+const qu=require("./routes/index.js")
+
+
 let kurentoClient = null;
 let iceCandidateQueues = {};
 let socketRoom = {};
@@ -394,6 +399,17 @@ function handleDisconnect(socket, roomid) {
         event: 'userDisconnected',
         userid: socket.id,
     });
+//     connection.query('UPDATE acctime SET weekAccTime=?, monthAccTime=?, dayAccTime=? WHERE uID=?',[10,10,50,10],
+//     function(err,result,fields){
+//     if(err){
+//         console.log(err);
+//     }
+//         console.log(result)
+
+// });
+    qu.timeupdate;
+
+
 }
 
 server.listen(PORT, () => {
