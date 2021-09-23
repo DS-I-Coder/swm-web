@@ -1,110 +1,126 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
     <title>회원가입</title>
     <script language="javascript">
-    function validate() {
-        var re = /^[a-zA-Z0-9]{4,15}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
-        var re3 = /^[a-zA-Z0-9]{6,20}$/
-        var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        function validate() {
+            var re = /^[a-zA-Z0-9]{4,15}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+            var re3 = /^[a-zA-Z0-9]{6,20}$/
+            var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
 
-        var id = document.getElementById("id");
-        var pw = document.getElementById("pw");
-        var email = document.getElementById("email");
-        var phone = document.getElementById("phone");
-        var age = document.getElementById("age");
+            var id = document.getElementById("id");
+            var pw = document.getElementById("pw");
+            var email = document.getElementById("email");
+            var phone = document.getElementById("phone");
+            var age = document.getElementById("age");
 
 
-        if(!check(re,id,"아이디는 4~15자의 영문 대소문자와 숫자로만 입력")) {
-            return false;
+            if (!check(re, id, "아이디는 4~15자의 영문 대소문자와 숫자로만 입력")) {
+                return false;
+            }
+
+            if (!check(re3, pw, "패스워드는 6~20자의 영문 대소문자와 숫자로만 입력")) {
+                return false;
+            }
+
+            if (join.pw.value != join.checkpw.value) {
+                alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
+                join.checkpw.value = "";
+                join.checkpw.focus();
+                return false;
+            }
+
+            if (email.value == "") {
+                alert("이메일을 입력해 주세요");
+                email.focus();
+                return false;
+            }
+
+            if (!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+                return false;
+            }
+
+            if (join.name.value == "") {
+                alert("이름을 입력해 주세요");
+                join.name.focus();
+                return false;
+            }
+
         }
 
-        if(!check(re3,pw,"패스워드는 6~20자의 영문 대소문자와 숫자로만 입력")) {
-            return false;
+        function check(re, what, message) {
+            if (re.test(what.value)) {
+                return true;
+            }
+            alert(message);
+            what.value = "";
+            what.focus();
+            //return false;
         }
-
-        if(join.pw.value != join.checkpw.value) {
-            alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
-            join.checkpw.value = "";
-            join.checkpw.focus();
-            return false;
-        }
-
-        if(email.value=="") {
-            alert("이메일을 입력해 주세요");
-            email.focus();
-            return false;
-        }
-
-        if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
-            return false;
-        }
-
-        if(join.name.value=="") {
-            alert("이름을 입력해 주세요");
-            join.name.focus();
-            return false;
-        }
-
-    }
-
-    function check(re, what, message) {
-        if(re.test(what.value)) {
-            return true;
-        }
-        alert(message);
-        what.value = "";
-        what.focus();
-        //return false;
-    }
     </script>
 </head>
+
 <body width="100%" height="100%">
-<form name="join" class="signupForm" onsubmit="return validate();" action="/controllers/register-controller" method="post">
-    <h2>SignUp</h2>
-    <div class="idForm">
-        <p>ID</p>
-        <input type="text" class="join" placeholder="Write your ID" name="id">
-        <p>※4-15자의 영문 대소문자와 숫자로만 입력 (중복불가)</p>
-    </div>
-    <div class="passForm">
-        <p>Password</p>
-        <input type="password" class="join" placeholder="Write your Password" name="pw">
-        <p>※6-20자의 영문 대소문자와 숫자로만 입력</p>
-    </div>
-    <div class="idForm">
-        <p>Repeat password</p>
-        <input type="password" class="join" id="checkpw" placeholder="Write your Passwrod agin" maxlength="20">
-    </div>
-    <div class="idForm">
-        <p>Email</p>
-        <input type="text" class="join" name="email" placeholder="example@mail" id="email">
-    </div>
-    <div class="idForm">
-        <p>Nickname</p>
-        <input type="text" class="join" name="name" maxlength="12">
-    </div>
-    <!-- <div class="idForm">
+    <form name="join" class="signupForm" onsubmit="return validate();" action="/controllers/register-controller"
+        method="post">
+        <h2>SignUp</h2>
+        <div class="idForm">
+            <p>ID</p>
+            <input type="text" class="join" placeholder="Write your ID" name="id">
+            <p>※4-15자의 영문 대소문자와 숫자로만 입력 (중복불가)</p>
+        </div>
+        <div class="passForm">
+            <p>Password</p>
+            <input type="password" class="join" placeholder="Write your Password" name="pw">
+            <p>※6-20자의 영문 대소문자와 숫자로만 입력</p>
+        </div>
+        <div class="idForm">
+            <p>Repeat password</p>
+            <input type="password" class="join" id="checkpw" placeholder="Write your Passwrod agin" maxlength="20">
+        </div>
+        <div class="idForm">
+            <p>Email</p>
+            <input type="text" class="join" name="email" placeholder="example@mail" id="email">
+        </div>
+        <div class="idForm">
+            <p>Nickname</p>
+            <input type="text" class="join" name="name" maxlength="12">
+        </div>
+        <!-- <div class="idForm">
         <p>Phone</p>
         <input type="text" class="join" placeholder="Add phone" name="phone" id="phone" maxlength="11">
     </div> -->
-    <div class="idForm">
-        <p>Age</p>
-        <input type="text" class="join" placeholder="000000" name="age" id="age" maxlength="6">
-    </div>
-    <div class="idForm">
+        <div class="idForm">
+            <p>Age</p>
+            <input type="text" class="join" placeholder="000000" name="age" id="age" maxlength="6">
+        </div>
+        <!-- <div class="idForm">
         <p>Study Category</p>
         <input type="text" class="join" placeholder="Choose sutdy" name="category">
-    </div>
+    </div> -->
+        <div class="idForm">
+            <p>Study Category</p>
+            <select class="join" name="category">
+                <option value="어학">어학</option>
+                <option value="취업">취업</option>
+                <option value="임용">임용</option>
+                <option value="공무원">공무원</option>
+                <option value="학교공부">학교공부</option>
+                <option value="독서">독서</option>
+                <option value="자격증">자격증</option>
+                <option value="기타">기타</option>
+            </select>
+        </div>
 
-    
-   <center>
-       <br/>
-       <input type="submit" class="btn2"value="회원가입"/>
-   </center>
-</form>
+        <center>
+            <br />
+            <input type="submit" class="btn2" value="회원가입" />
+        </center>
+    </form>
 </body>
+
 </html>

@@ -20,7 +20,7 @@
 }
 
 .makeForm {
-    overflow: hidden;
+    /* overflow: hidden; */
     padding-top: 55px;
 }
 
@@ -51,6 +51,7 @@
     color: #23A6F0;
     font-weight: 900;
     font-size: 36px;
+    margin-top: 50px;/**/
 }
 
 .roomInput {
