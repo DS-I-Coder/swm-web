@@ -9,8 +9,3 @@ function deleteClicked(rID){
   }
 }
 
-/*??왜 안됌.. */
-window.onhashchange  = function() {
-  console.log("testsetset")
-  location.href = '/main';
-}

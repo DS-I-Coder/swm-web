@@ -11,24 +11,40 @@
 </head>
 
 <body>
-  <%- include('../header') %> 
+  <%- include('../header') %>
   <div id="input" class="mainForm">
     <h3 id="MakeRoomTitle">MakeRoom<h2>
         <form action="/room/create" method="post">
           <div class="makeForm">
             <div id="left">
               <p>스터디방 이름</p>
-              <input type="text" class="roomInput" id="roomTitle" name = "roomTitle" placeholder="스터디방 이름을 입력하세요">
+              <input type="text" class="roomInput" id="roomTitle" name="roomTitle" placeholder="스터디방 이름을 입력하세요">
               <p>스터디 분야</p>
-              <input type="text" class="roomInput" id="roomCatagory" name = "roomCategory" placeholder="스터디 분야를 선택하세요">
+              <select class="roomInput" id="roomCategory" name="roomCategory">
+                <option value="어학">어학</option>
+                <option value="취업">취업</option>
+                <option value="임용">임용</option>
+                <option value="공무원">공무원</option>
+                <option value="학교공부">학교공부</option>
+                <option value="독서">독서</option>
+                <option value="자격증">자격증</option>
+                <option value="기타">기타</option>
+              </select>
               <p>스터디 종류</p>
-              <!--test-->
-              <!-- <input type="file" name="roomImage" /> -->
-              <p>초기 장치 설정</p>
+              <select class="roomInput" id="roomCatagory" name="roomCategory" onchange="showDiv('hidden_roomPW', this)">
+                <option value="0">공개방</option>
+                <option value="1">비밀방</option>
+              </select>
+              <div id="hidden_roomPW" style="display: none;">
+                <input type="password" class="roomInput" name="roomPW" placeholder="비밀번호를 입력하세요"> 
+              </div>
+
+              <!-- <p>초기 장치 설정</p> -->
             </div>
             <div id="right">
               <p>공지사항 설정</p>
-              <input type="textarea" cols = 20 class="notice" id="roomNotice" name = "roomNotice" placeholder="스터디 규칙, 공지사항 등을 입력해주세요">
+              <input type="textarea" cols=20 class="notice" id="roomNotice" name="roomNotice"
+                placeholder="스터디 규칙, 공지사항 등을 입력해주세요">
             </div>
           </div>
           <div class="enter">

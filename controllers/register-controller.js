@@ -10,9 +10,9 @@ module.exports.register = function (req, res) {
     "userAge": req.body.age,
     "category": req.body.category
   }
+  
   const sql = 'INSERT INTO users SET ?;';
   connection.query(sql, users, function (error, results, fields) {
-    console.log(error);
     if (error) {
       if(error.errno==1062){ //중복
         res.send("<script type='text/javascript'>alert('중복된 아이디 혹은 이메일입니다.'); document.location.href='/register';</script>");

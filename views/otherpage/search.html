@@ -31,7 +31,7 @@
                     <% results.forEach(function(room, index){ %>
                     <div id="searchedRoom">
                         <a href='/room/<%= room.uuid %>'>
-                            <div id="roomImg" onclick="joinRoom()"></div>
+                            <div id="roomImg" name="<%-room%>" onclick='joinRoom()'></div>
                         </a>
                         <div class="roomTitle" >
                             <h2><%= room.roomTitle %></h2>

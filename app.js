@@ -19,6 +19,7 @@ app.post('/api/register',registerController.register);
 app.post('/api/auth',authController.auth);
 
 console.log(authController);
+console.log(registerController);
 app.post('/controllers/register-controller', registerController.register);
 app.post('/controllers/auth-controller', authController.auth);
 module.exports = app;

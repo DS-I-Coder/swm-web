@@ -21,7 +21,6 @@ const socket = io();
 //     faceapi.nets.faceExpressionNet.loadFromUri('/js/util/models')
 // ]).then(play) //connect 오류
 
-
 //
 const constraints = {
     audio: true,
@@ -51,7 +50,7 @@ function userDisconnected(userid) {
         clearInterval(interval[userid]);
         context[userid].context2d.clearRect(0, 0, context[userid].width, context[userid].height);
         context[userid] = null;
-        
+
 
         // TODO: 메세지 오류 수정
         // const msg = document.createElement('div');
@@ -368,7 +367,7 @@ myVideo.addEventListener('play', () => {
 
             });
         } else { // 감지 안됐을 때 
-            
+
             /* 이모지 사용 */
 
             // const img = new Image();
@@ -378,11 +377,10 @@ myVideo.addEventListener('play', () => {
             //     context.clearRect(0, 0, canvas.width, canvas.height);
             //     context.drawImage(img, 0, 0, canvas.width, canvas.height);
             // });
-            
+
             /* 블러처리 */
             context.clearRect(0, 0, canvas.width, canvas.height);
             myVideo.style.filter = "blur(15px)";
         }
     }, 100)
 })
-

@@ -1,0 +1,51 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+/* 헤더 */
+header {
+  height: 95px
+}
+
+#logo {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  width: 200px;
+  height: 32px;
+  letter-spacing: 0.1px;
+  color: #252B42;
+}
+
+
+.topmenu {
+  left: 195px;
+  top: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  position: absolute;
+  color: #737373;
+  float: left;
+  text-align: center;
+  list-style: none;
+}
+
+.topmenu li {
+  float: left;
+  padding-right: 45px;
+  padding-top: 5px;
+}
