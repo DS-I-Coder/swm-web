@@ -84,7 +84,7 @@
         
         <div id="stopwatch">
             <div class="container">
-                <p class="elapsed-time-text">00:00</p>
+                <p class="elapsed-time-text" name="timerecord">00:00</p>
                 <div class="buttons-container">
                     <button type="button" id="start-button" *ngIf="displayStartButton" onclick="startStopwatch()">START</button>
                     <button type="button" id="stop-button" *ngIf="!displayStartButton" onclick="stopStopwatch()">STOP</button>

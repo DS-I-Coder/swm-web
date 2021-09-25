@@ -6,7 +6,8 @@ function removeGreen(ele) {
 }
 
 const exitRoomBtn = document.getElementById('out');
-const qu=require("../../routes/index.js")
+const time=document.getElementsByClassName("elapsed-time-text");
+
 
 exitRoomBtn.addEventListener('click', () => { /*뒤로가기 버튼*/
     swal({
@@ -31,10 +32,12 @@ exitRoomBtn.addEventListener('click', () => { /*뒤로가기 버튼*/
             //     event: 'disconnect',
             //     //roomid: ROOM_ID,
             // });
+            // var time=document.getElementsByClassName("elapsed-time-text");
             socket.emit('disconnect')
             //closeRoom();
-            qu.timeupdate;
-            location.href = '/main';    
+            location.href = '/timeupdate';    
+
+
         }
     });
 });
