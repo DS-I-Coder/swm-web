@@ -197,18 +197,17 @@ router.get('/room/:room', (req, res) => {
 
 /*sql에 추가
 ALTER TABLE acctime ADD dayAccTime int default 0 not null;*/
-router.get('/timeupdate', (req, res) => {
-
+router.get('/timeupdate/:time', (req, res) => {
+    console.log('inini',req.params.time)
     const user=req.session.user.uid;
 
     let sql = 'UPDATE acctime SET weekAccTime=?, monthAccTime=?, dayAccTime=? WHERE uID=?;';
     connection.query(
-        sql, [10,20,30,user],
+        sql, [10,20,req.params.time,user],
         function (err, rows, fields) {
             if (err) {
                 console.log(err);
             }
-
             else{
             // console.log(timerecord);
             res.redirect('/main');

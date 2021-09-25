@@ -1,76 +1,81 @@
 function addGreen(ele) {
     ele.classList.add('active-green');
 }
+
 function removeGreen(ele) {
     ele.classList.remove('active-green');
 }
 
 const exitRoomBtn = document.getElementById('out');
-const time=document.getElementsByClassName("elapsed-time-text");
 
+exitRoomBtn.addEventListener('click', () => {
+    const t = '03:12'.split(":");
 
-exitRoomBtn.addEventListener('click', () => { /*뒤로가기 버튼*/
+    // Convert list to numbers
+    const a = t.map(numberAsString => parseInt(numberAsString));
+    console.log(a[0]+a[1]);
+
+    /*뒤로가기 버튼*/
     swal({
-        title: "메인화면으로 돌아갑니다.",
-        text: "정말 퇴장하시겠습니까?",
-        icon: "warning",
-        buttons: ['아니오', '예'],
-        dangerMode: true,
-    })
-    .then((value) => {
-        // if (value) {
-        //     socket.emit('message', {
-        //         event: 'closeRoom',
-        //         roomid: ROOM_ID,
-        //     });
-        //     closeRoom();
-        // }
-        
-        if (value) {
-            // socket.emit('message', {
-            //     // event: 'closeRoom',
-            //     event: 'disconnect',
-            //     //roomid: ROOM_ID,
-            // });
-            // var time=document.getElementsByClassName("elapsed-time-text");
+            title: "메인화면으로 돌아갑니다.",
+            text: "정말 퇴장하시겠습니까?",
+            icon: "warning",
+            buttons: ['아니오', '예'],
+            dangerMode: true,
+        })
+        .then((value) => {
+            // if (value) {
+            //     socket.emit('message', {
+            //         event: 'closeRoom',
+            //         roomid: ROOM_ID,
+            //     });
+            //     closeRoom();
+            // }
 
-            socket.emit('disconnect')
-            //closeRoom();
-            location.href = '/timeupdate';    
+            if (value) {
+                // socket.emit('message', {
+                //     // event: 'closeRoom',
+                //     event: 'disconnect',
+                //     //roomid: ROOM_ID,
+                // });
 
-
-
-        }
-    });
+                var time = document.getElementById('timerecord').innerText
+                const arr = time.split(':').map(numberAsString => parseInt(numberAsString));
+                socket.emit('disconnect')
+                console.log(arr[0]*60 + arr[1])
+                location.href = `/timeupdate/${arr[0]*60 + arr[1]}`;
+                //closeRoom();
+            }
+        });
 });
 
 function closeRoom() {
     console.log('function closeRoom')
     swal({
-        title: ".",
-        text: "메인 화면으로 돌아갑니다.",
-        button: "확인",
-    })
-    .then(() => {
-        location.href = '/main';
-    });
+            title: ".",
+            text: "메인 화면으로 돌아갑니다.",
+            button: "확인",
+        })
+        .then(() => {
+            location.href = '/main';
+        });
 }
 
-const fullscrBtn=document.getElementById('full-screen');
+const fullscrBtn = document.getElementById('full-screen');
 
-let screenMode=false;
-fullscrBtn.addEventListener('click',()=>{
-    const mainLeft=document.getElementById('main-container-left');
-    const mainRight=document.getElementById('main-container-right');
-    if(screenMode){
-        screenMode=false;
-        mainLeft.style="width:80%";
-        mainRight.style="width:20% display:flex";
-    }else{
-        screenMode=true;
+let screenMode = false;
+fullscrBtn.addEventListener('click', () => {
+    const mainLeft = document.getElementById('main-container-left');
+    const mainRight = document.getElementById('main-container-right');
+    if (screenMode) {
+        screenMode = false;
+        mainLeft.style = "width:80%";
+        mainRight.style = "width:20% display:flex";
+    } else {
+        screenMode = true;
 
-        mainLeft.style="width:100%";
-        mainRight.style="display:none";
+        mainLeft.style = "width:100%";
+        mainRight.style = "display:none";
 
     }
 })
@@ -115,7 +120,8 @@ cameraBtn.addEventListener('click', () => {
             localStream.getVideoTracks()[0].enabled = true;
             addGreen(cameraBtn);
             break;
-        case videoMode.screenOff: case videoMode.screenOn:
+        case videoMode.screenOff:
+        case videoMode.screenOn:
             nowVideoMode = videoMode.cameraOn;
             getCameraTrack(cameraConstraint).then(track => changeTrack(track, localStream, senders));
             addGreen(cameraBtn);
@@ -141,7 +147,8 @@ screenBtn.addEventListener('click', () => {
             localStream.getVideoTracks()[0].enabled = false;
             removeGreen(screenBtn);
             break;
-        case videoMode.cameraOff: case videoMode.cameraOn:
+        case videoMode.cameraOff:
+        case videoMode.cameraOn:
             nowVideoMode = videoMode.screenOn;
             getScreenTrack(screenConstraint).then(track => changeTrack(track, localStream, senders));
             addGreen(screenBtn);
@@ -159,6 +166,7 @@ function getCameraTrack(constraint) {
             })
     })
 }
+
 function getScreenTrack(constraint) {
     return new Promise((resolve, reject) => {
         navigator.mediaDevices.getDisplayMedia(constraint)
