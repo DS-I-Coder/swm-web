@@ -31,6 +31,7 @@ const { Socket } = require('dgram');
 const { fstat } = require('fs');
 const { connect } = require('./../config');
 
+// const timeanddate=require('../public/js/time-and-date-handling.js');
 
 
 
@@ -42,6 +43,7 @@ router.get('/', function (req, res) {
 
 router.get('/login', function (req, res) {
     req.session.url = req.headers.referer;
+
     res.render('authpage/login.html');
 });
 
@@ -144,6 +146,7 @@ router.post('/room/create', (req, res) => {
         req.body.roomPW
     ];
     console.log('143', req.body.roomPW);
+
     //숫자 있는 부분 차례로,
     //max참여인원, 현재 참여인원, 공개방여부, 베팅방여부
     //let sql = 'INSERT INTO room(roomTitle, maxParticipant, curParticipant,roomCategory,isPublic,isBetting,roomNotice,uuid, host, roomImage) VALUES(?,4,0,?,1,0,?,?,?,?);';
@@ -191,6 +194,28 @@ router.get('/room/:room', (req, res) => {
     }
 
 });
+
+/*sql에 추가
+ALTER TABLE acctime ADD dayAccTime int default 0 not null;*/
+router.get('/timeupdate', (req, res) => {
+
+    const user=req.session.user.uid;
+
+    let sql = 'UPDATE acctime SET weekAccTime=?, monthAccTime=?, dayAccTime=? WHERE uID=?;';
+    connection.query(
+        sql, [10,20,30,user],
+        function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+            }
+
+            else{
+            // console.log(timerecord);
+            res.redirect('/main');
+            }
+    });
+});
+
 
 
 
@@ -273,24 +298,6 @@ router.post('/emoji', upload.single('img'), (req, res) => {
         }
     )
 })
-
-
-// if(stopwatch.obj.checked==true){
-//     datatodb(10);
-//     console.log(obj.cheked)
-// }
-
-const timeupdate= connection.query('UPDATE acctime SET weekAccTime=?, monthAccTime=?, dayAccTime=? WHERE uID=?',[10,10,50,10],
-function(err,result,fields){
-    if(err){
-        console.log(err);
-    }
-        console.log(result)
-
-});
-
-
-
 module.exports = router;
 
 

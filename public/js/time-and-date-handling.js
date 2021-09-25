@@ -54,12 +54,7 @@ var timeAndDateHandling = {
             return totalHoursAsString + ":" + minutesAsString + ":" + secondsAsString;
         }
 
-        // time=timeDiff;
-
 
     }
-
-
-
 
 }

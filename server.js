@@ -10,7 +10,6 @@ const router = require(__dirname + '/routes/index.js');
 
 const connection = require('./config.js');
 const { query } = require('express');
-const qu=require("./routes/index.js")
 
 
 let kurentoClient = null;
@@ -407,7 +406,6 @@ function handleDisconnect(socket, roomid) {
 //         console.log(result)
 
 // });
-    qu.timeupdate;
 
 
 }
