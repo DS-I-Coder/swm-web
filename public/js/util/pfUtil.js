@@ -33,9 +33,12 @@ exitRoomBtn.addEventListener('click', () => { /*뒤로가기 버튼*/
             //     //roomid: ROOM_ID,
             // });
             // var time=document.getElementsByClassName("elapsed-time-text");
-            //closeRoom();
+
             socket.emit('disconnect')
-            location.href = '/timeupdate';
+            //closeRoom();
+            location.href = '/timeupdate';    
+
+
 
         }
     });
