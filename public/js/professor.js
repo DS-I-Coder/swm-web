@@ -73,7 +73,7 @@ function receiveVideo(userid, username) {
     participants[user.id] = user;
 
     const template = `
-    <video id = "${userid}" preload="metadata" autoplay muted></video>`;
+    <video id = "${userid}" preload="metadata" style="width: 50%;" autoplay muted></video>`;
     const container = document.createElement('div');
     container.innerHTML = template
     videoGrid.appendChild(container)
@@ -329,7 +329,7 @@ myVideo.addEventListener('play', () => {
     waitingImage.src = '/js/util/emoji/rec.png';
     waitingImage.addEventListener('load', e => {
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(waitingImage, 0, 0, myVideo.videoWidth, myVideo.videoHeight);
+        context.drawImage(waitingImage, 0, 0, myVideo.width, myVideo.height);
         // context.drawImage(waitingImage, 0, 0, 300, 300);
     });
 

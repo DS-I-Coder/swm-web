@@ -15,18 +15,7 @@
   google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    // var data = google.visualization.arrayToDataTable([
-    //   ['Task', 'Hours per Day'],
-    //   ['Work', 11],
-    //   ['Eat', 2],
-    //   ['Commute', 2],
-    //   ['Watch TV', 2],
-    //   ['Sleep', 7]
-    // ]);
-
-    console.log('cc', parseInt('<%= results[0].cnt %>'));
-
-    var data_age = google.visualization.arrayToDataTable([
+    var data_ageC = google.visualization.arrayToDataTable([
       ['Age', 'dd'],
       ['<%= results[0].category %>', parseInt('<%= results[0].cnt %>')],
       ['<%= results[1].category %>', parseInt('<%= results[1].cnt %>')],
@@ -35,14 +24,35 @@
       ['<%= results[4].category %>', parseInt('<%= results[4].cnt %>')]
     ]);
 
+    var data_ageA = google.visualization.arrayToDataTable([
+      ['Age', 'dd'],
+      ['<%= results[0].category %>', parseInt('<%= results[0].cnt %>')],
+      ['<%= results[1].category %>', parseInt('<%= results[1].cnt %>')],
+      ['<%= results[2].category %>', parseInt('<%= results[2].cnt %>')],
+      ['<%= results[3].category %>', parseInt('<%= results[3].cnt %>')],
+      ['<%= results[4].category %>', parseInt('<%= results[4].cnt %>')]
+    ]);
+
+    var data_catA = google.visualization.arrayToDataTable([
+      ['Age', 'dd'],
+      ['<%= results[0].category %>', parseInt('<%= results[0].cnt %>')],
+      ['<%= results[1].category %>', parseInt('<%= results[1].cnt %>')],
+      ['<%= results[2].category %>', parseInt('<%= results[2].cnt %>')],
+      ['<%= results[3].category %>', parseInt('<%= results[3].cnt %>')],
+      ['<%= results[4].category %>', parseInt('<%= results[4].cnt %>')]
+    ]);
 
     var options = {
-      colors: ['#95E2F5', '#99B1DE', '#9489F5', '#C099DE', '#FCC7FA']
+      colors: ['#17225C', '#B81509', '#89DEDB',  '#F24C27', '#F2F2F2']
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('cat_byAge'));
+    var chart1 = new google.visualization.PieChart(document.getElementById('cat_byAge'));
+    var chart2 = new google.visualization.PieChart(document.getElementById('acc_byAge'));
+    var chart3 = new google.visualization.PieChart(document.getElementById('acc_byCat'));
 
-    chart.draw(data_age, options);
+    chart1.draw(data_ageC, options);
+    chart2.draw(data_ageA, options);
+    chart3.draw(data_catA, options);
   }
 </script>
 </head>
@@ -51,19 +61,55 @@
 </header>
 
 <body>
-  <p><%= userName %>님은 <br>상위 5%</br>입니다.</p>
-  <div>
-    <p>나이대별 카테고리 비율</p>
-    <div id="cat_byAge" style="width: 900px; height: 500px;"></div>
-  </div>
-  <div>
-    <p>나이대별 카테고리 비율</p>
-    <div id="acc_byAge" style="width: 900px; height: 500px;"></div>
-  </div>
-  <div>
-    <p>나이대별 카테고리 비율</p>
-    <div id="acc_byCat" style="width: 900px; height: 500px;"></div>
-  </div>
+  <div class="inner">
+    <div class="inner_left">
+      <div id="recordbox">
+        <div class="box" id="today_box">
+          <div class="imagebox" id="today_image"> <img src="/images/today_image.png" alt="today Image"></div>
+          <h4>Today Record</h4>
+          <hr>
+          <h2>00:00:00</h2>
+        </div>
+
+        <div class="box" id="week_box">
+          <div class="imagebox" id="week_image"><img src="/images/week_image.png" alt="week Image"></div>
+          <h4>This Week Record</h4>
+          <hr>
+          <h2>00:00:00</h2>
+        </div>
+
+        <div class="box" id="month_box">
+          <div class="imagebox" id="month_image"><img src="/images/month_image.png" alt="month Image"></div>
+          <h4>This Month Record</h4>
+          <hr>
+          <h2>00:00:00</h2>
+        </div>
+      </div>
+    </div>
+    <!--통계 차트-->
+    <div class="inner_right">
+      <div class="stat">
+        <div class="stat_top">
+          <p><%= userName %>님은 <b>상위 5%</b>입니다.</p>
+        </div>
+
+        <h3><%= userName %>님 맞춤형 데이터 통계</h3>
+        <div class="stat_bottom">
+          <div class="stat_item">
+            <p>나이대별 카테고리 비율</p>
+            <div id="cat_byAge" class="chart"></div>
+          </div>
+          <div class="stat_item">
+            <p>20대 누적시간 랭킹</p>
+            <div id="acc_byAge" class="chart"></div>
+          </div>
+          <div class="stat_item">
+            <p>어학 누적시간 랭킹</p>
+            <div id="acc_byCat" class="chart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 
 </html>

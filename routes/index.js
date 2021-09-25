@@ -150,7 +150,7 @@ router.post('/room/create', (req, res) => {
     //숫자 있는 부분 차례로,
     //max참여인원, 현재 참여인원, 공개방여부, 베팅방여부
     //let sql = 'INSERT INTO room(roomTitle, maxParticipant, curParticipant,roomCategory,isPublic,isBetting,roomNotice,uuid, host, roomImage) VALUES(?,4,0,?,1,0,?,?,?,?);';
-    let sql = 'INSERT INTO room(roomTitle, maxParticipant, curParticipant,roomCategory,isPublic,isBetting,roomNotice,uuid, host, roomPW) VALUES(?,4,0,?,1,0,?,?,?,?);';
+    let sql = 'INSERT INTO room(roomTitle, maxParticipant, curParticipant,roomCategory,isPublic,isBetting,roomNotice,uuid, host, roomPW) VALUES(?,4,0,?,1,?,?,?,?);';
     connection.query(
         sql, room,
         function (err, rows, fields) {
