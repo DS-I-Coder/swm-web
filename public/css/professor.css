@@ -78,6 +78,7 @@ html,body{
 
 #main-container-right{
     width: 20%;
+    /* height: 100%; */
 }
 
 /* #my-cam-container{
@@ -144,6 +145,7 @@ html,body{
         color: #414142;
         position: relative;
         font-family: monospace; */
+        background-color: #f1f1f1;
     }
 
 
