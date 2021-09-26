@@ -52,10 +52,8 @@ router.get('/register', function (req, res) {
 });
 
 router.get('/main', function (req, res) {
-    /* TODO ***************************/
-    var rank_user = []
     connection.query(
-        'SELECT u.uID, u.userName, u.category, a.weekAcctime FROM AccTime as a JOIN Users as u ON a.uID = u.uID ORDER BY a.weekAccTime DESC LIMIT 8;',
+        'SELECT u.uID, u.userName, u.category, LPAD(a.dayAccTime DIV (60*60),2,0) as h, LPAD(a.dayAccTime DIV 60,2,0) as m, LPAD(a.dayAccTime%60,2,0)as s FROM AccTime as a JOIN Users as u ON a.uID = u.uID ORDER BY a.dayAccTime DESC LIMIT 8;',
         function (err, rows, fields) {
             if (err) {
                 console.log(err);
@@ -70,6 +68,9 @@ router.get('/main', function (req, res) {
 
                 } else {
                     console.log(req.session);
+                    console.log(rows)
+                    var rank_user = rows
+                    
                     res.render('main.html', {
                         flag: true,
                         rankuser: rows,
@@ -222,7 +223,7 @@ router.get('/mypage', function (req, res) {
     if (!req.session.user) res.redirect('/login');
 
     else {
-        connection.query('SELECT * FROM room r RIGHT JOIN users u ON r.host = u.uid where uid = ?;', req.session.user.uid,
+        connection.query('SELECT * FROM users u LEFT JOIN acctime a ON u.uid = a.uid LEFT JOIN room r ON u.uid = r.host WHERE u.uid =?;', req.session.user.uid,
             function (err, result, fields) {
                 if (err) {
                     console.log(err);
