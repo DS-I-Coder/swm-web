@@ -68,9 +68,7 @@ html,body{
     width: 100%;
     height: 93%;
 }
-#video-grid video{
-    width: 50%;
-}
+
 
 #main-container-left {
     background: rgb(43, 42, 42);
@@ -78,7 +76,7 @@ html,body{
 
 #main-container-right{
     width: 20%;
-    /* height: 100%; */
+    height: 100%;
 }
 
 /* #my-cam-container{

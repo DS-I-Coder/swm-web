@@ -33,7 +33,7 @@
             <h3 id="logo">Study With Me!</h3>
           </li>
           <li><a id="home">Home</a></li>
-          <li><a id="record">Record</a></li>
+          <li><a id="record" onclick="location.href='/stat'">Record</a></li>
           <li><a id="about">About</a></li>
           <li><a id="contact">Contact</a></li>
         </ul>
@@ -81,7 +81,7 @@
         <div class="lanking" id="lanking1">
           <h3 class="name" id="name1"><%= index+1 %>. <%= item.userName %> 님</h3>
           <hr class="redhr">
-          <p class="time" id="time1">00 : 00 : 00</p>
+          <p class="time" id="time1"><%= item.h %> : <%= item.m %> : <%= item.s %></p>
           <p class="tag" id="tag1">#<%= item.category %></p>
         </div>
         <%  })%>
@@ -93,7 +93,7 @@
         <div class="lanking" id="lanking1">
           <h3 class="name" id="name1"><%= index+5 %>. <%= item.userName %> 님</h3>
           <hr class="redhr">
-          <p class="time" id="time1">00 : 00 : 00</p>
+          <p class="time" id="time1"><%= item.h %> : <%= item.m %> : <%= item.s %></p>
           <p class="tag" id="tag1">#<%= item.category %></p>
         </div>
         <%  })%>
