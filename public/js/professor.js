@@ -36,7 +36,7 @@ const constraints = {
 // 소켓 연결이 완료되면 서버로 join 메시지를 보내서 처리
 socket.emit('message', {
     event: 'join',
-    isHost: true,
+    //isHost: true,
     username: userName,
     roomid: ROOM_ID,
 });

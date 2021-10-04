@@ -106,26 +106,12 @@ io.on('connection', socket => {
 
 });
 
-function join(socket, username, roomid, isHost, callback) {
+function join(socket, username, roomid, callback) {
     getRoom(socket, roomid, (err, myRoom) => {
         // getRoom에서 받아온 err와 myRoom
         if (err) {
             return callback(err);
         }
-
-        // join 요청을 한 유저가 host일 경우 이미 호스트가 있는 방인지 검사
-        // if (isHost) {
-        //     if (myRoom.host) {
-        //         socket.emit('message', {
-        //             event: 'error',
-        //             message: '이미 개설되어 있는 방'
-        //         });
-        //         return;
-        //     }
-        //     // host가 없는 방이면 해당 방의 host로 요청한 유저를 지정
-        //     myRoom.host = socket.id;
-        //     console.log(`host: ${myRoom.host}`);
-        // }
 
         // myRoom의 pipeline에 WebRtcEndpoint를 추가
         myRoom.pipeline.create('WebRtcEndpoint', (err, outgoingMedia) => {
@@ -180,17 +166,6 @@ function join(socket, username, roomid, isHost, callback) {
             //             });
             //         }
             //     }
-            // } else {
-            //     // host가 아닌 경우 host의 비디오만 받아오면 되므로 existingUsers에 host만 추가
-            //     const hostid = myRoom.host;
-            //     if (hostid) {
-            //         existingUsers.push({
-            //             id: myRoom.participants[hostid].id,
-            //             name: myRoom.participants[hostid].name
-            //         });
-            //     }
-            // }
-
             for (let i in myRoom.participants) {
                 if (myRoom.participants[i].id != user.id) {
                     existingUsers.push({
@@ -199,7 +174,6 @@ function join(socket, username, roomid, isHost, callback) {
                     });
                 }
             }
-
 
             // 현재 사용자에게 기존 참가자 목록을 묶어서 연결 이벤트를 전송
             socket.emit('message', {
@@ -274,6 +248,7 @@ function addIceCandidate(socket, senderid, roomid, iceCandidate, callback) {
     }
 }
 
+/* JOIN */
 // join을 호출했을 때 myRoom 객체를 만들거나 반환하는 메소드
 function getRoom(socket, roomid, callback) {
     let myRoom = io.sockets.adapter.rooms[roomid] || { length: 0 };
@@ -281,8 +256,7 @@ function getRoom(socket, roomid, callback) {
 
     console.log(roomid, ' has ', numClients, ' clients');
 
-    if (numClients == 0) {
-        // 해당 room이 비어있으면 새 room 생성
+    if (numClients == 0) {  // 새로 방을 생성한 경우 
         socket.join(roomid, () => {
             myRoom = io.sockets.adapter.rooms[roomid];
             socketRoom[socket.id] = roomid;
