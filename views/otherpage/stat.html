@@ -17,29 +17,31 @@
   function drawChart() {
     var data_ageC = google.visualization.arrayToDataTable([
       ['Age', 'dd'],
-      ['<%= results[0].category %>', parseInt('<%= results[0].cnt %>')],
-      ['<%= results[1].category %>', parseInt('<%= results[1].cnt %>')],
-      ['<%= results[2].category %>', parseInt('<%= results[2].cnt %>')],
-      ['<%= results[3].category %>', parseInt('<%= results[3].cnt %>')],
-      ['<%= results[4].category %>', parseInt('<%= results[4].cnt %>')]
+      ['<%= cat_byage[0].category %>', parseInt('<%= cat_byage[0].cnt %>')],
+      ['<%= cat_byage[1].category %>', parseInt('<%= cat_byage[1].cnt %>')],
+      ['<%= cat_byage[2].category %>', parseInt('<%= cat_byage[2].cnt %>')],
+      ['<%= cat_byage[3].category %>', parseInt('<%= cat_byage[3].cnt %>')],
+      ['<%= cat_byage[4].category %>', parseInt('<%= cat_byage[4].cnt %>')]
     ]);
 
     var data_ageA = google.visualization.arrayToDataTable([
       ['Age', 'dd'],
-      ['<%= results[0].category %>', parseInt('<%= results[0].cnt %>')],
-      ['<%= results[1].category %>', parseInt('<%= results[1].cnt %>')],
-      ['<%= results[2].category %>', parseInt('<%= results[2].cnt %>')],
-      ['<%= results[3].category %>', parseInt('<%= results[3].cnt %>')],
-      ['<%= results[4].category %>', parseInt('<%= results[4].cnt %>')]
+      ['10시간 이내', parseInt('<%= acc_byage[0] %>')],
+      ['10시간 이상', parseInt('<%= acc_byage[1] %>')],
+      ['20시간 이상', parseInt('<%= acc_byage[2] %>')],
+      ['30시간 이상', parseInt('<%= acc_byage[3] %>')],
+      ['40시간 이상', parseInt('<%= acc_byage[4] %>')],
+      ['50시간 이상', parseInt('<%= acc_byage[5] %>')]
     ]);
-
+    /* 카테고리별 누적시간 */
     var data_catA = google.visualization.arrayToDataTable([
       ['Age', 'dd'],
-      ['<%= results[0].category %>', parseInt('<%= results[0].cnt %>')],
-      ['<%= results[1].category %>', parseInt('<%= results[1].cnt %>')],
-      ['<%= results[2].category %>', parseInt('<%= results[2].cnt %>')],
-      ['<%= results[3].category %>', parseInt('<%= results[3].cnt %>')],
-      ['<%= results[4].category %>', parseInt('<%= results[4].cnt %>')]
+      ['10시간 이내', parseInt('<%= acc_bycat[0] %>')],
+      ['10시간 이상', parseInt('<%= acc_bycat[1] %>')],
+      ['20시간 이상', parseInt('<%= acc_bycat[2] %>')],
+      ['30시간 이상', parseInt('<%= acc_bycat[3] %>')],
+      ['40시간 이상', parseInt('<%= acc_bycat[4] %>')],
+      ['50시간 이상', parseInt('<%= acc_bycat[5] %>')]
     ]);
 
     var options = {
@@ -68,21 +70,21 @@
           <div class="imagebox" id="today_image"> <img src="/images/today_image.png" alt="today Image"></div>
           <h4>Today Record</h4>
           <hr>
-          <h2>00:00:00</h2>
+          <h2>00:00:04</h2>
         </div>
 
         <div class="box" id="week_box">
           <div class="imagebox" id="week_image"><img src="/images/week_image.png" alt="week Image"></div>
           <h4>This Week Record</h4>
           <hr>
-          <h2>00:00:00</h2>
+          <h2>00:00:10</h2>
         </div>
 
         <div class="box" id="month_box">
           <div class="imagebox" id="month_image"><img src="/images/month_image.png" alt="month Image"></div>
           <h4>This Month Record</h4>
           <hr>
-          <h2>00:00:00</h2>
+          <h2>00:00:20</h2>
         </div>
       </div>
     </div>
@@ -96,19 +98,20 @@
         <h3><%= userName %>님 맞춤형 데이터 통계</h3>
         <div class="stat_bottom">
           <div class="stat_item">
-            <p>나이대별 카테고리 비율</p>
+            <p><%=userAge%>대 카테고리 비율</p>
             <div id="cat_byAge" class="chart"></div>
           </div>
           <div class="stat_item">
-            <p>20대 누적시간 랭킹</p>
+            <p><%=userAge%>대 누적시간 랭킹</p>
             <div id="acc_byAge" class="chart"></div>
           </div>
           <div class="stat_item">
-            <p>어학 누적시간 랭킹</p>
+            <p><%=userCategory%> 누적시간 랭킹</p>
             <div id="acc_byCat" class="chart"></div>
           </div>
         </div>
       </div>
+      <p>* 매주 갱신됩니다.</p>
     </div>
 </body>
 

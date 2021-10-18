@@ -27,9 +27,15 @@ const {
 const {
     query
 } = require('express');
-const { Socket } = require('dgram');
-const { fstat } = require('fs');
-const { connect } = require('./../config');
+const {
+    Socket
+} = require('dgram');
+const {
+    fstat
+} = require('fs');
+const {
+    connect
+} = require('./../config');
 
 // const timeanddate=require('../public/js/time-and-date-handling.js');
 
@@ -68,9 +74,8 @@ router.get('/main', function (req, res) {
 
                 } else {
                     console.log(req.session);
-                    console.log(rows)
                     var rank_user = rows
-                    
+
                     res.render('main.html', {
                         flag: true,
                         rankuser: rows,
@@ -115,9 +120,9 @@ router.get('/room/roominfo', function (req, res) {
 //search화면으로 넘기기
 router.get('/search', function (req, res) {
     const sKeyword = req.query.searchinput;
-    if (sKeyword === ""){
+    if (sKeyword === "") {
         //TODO
-        res.send("<script type='text/javascript'>alert('검색어를 입력해주세요'); document.location.href=\'"+req.headers.referer+"\';</script>");
+        res.send("<script type='text/javascript'>alert('검색어를 입력해주세요'); document.location.href=\'" + req.headers.referer + "\';</script>");
     }
     connection.query(
         'SELECT * FROM room WHERE roomTitle LIKE \'%' + sKeyword + '%\';',
@@ -199,21 +204,20 @@ router.get('/room/:room', (req, res) => {
 /*sql에 추가
 ALTER TABLE acctime ADD dayAccTime int default 0 not null;*/
 router.get('/timeupdate/:time', (req, res) => {
-    console.log('inini',req.params.time)
-    const user=req.session.user.uid;
+    console.log('inini', req.params.time)
+    const user = req.session.user.uid;
 
-    let sql = 'UPDATE acctime SET weekAccTime=?, monthAccTime=?, dayAccTime=? WHERE uID=?;';
+    let sql = 'UPDATE acctime SET weekAccTime= weekAccTime+?, monthAccTime=monthAccTime+?, dayAccTime=dayAccTime+? WHERE uID=?;';
     connection.query(
-        sql, [10,20,req.params.time,user],
+        sql, [req.params.time, user, req.params.time, user, req.params.time, user],
         function (err, rows, fields) {
             if (err) {
                 console.log(err);
+            } else {
+                // console.log(timerecord);
+                res.redirect('/main');
             }
-            else{
-            // console.log(timerecord);
-            res.redirect('/main');
-            }
-    });
+        });
 });
 
 
@@ -228,11 +232,11 @@ router.get('/mypage', function (req, res) {
                 if (err) {
                     console.log(err);
                 } else {
-                            page = res.render('mypage', {
-                                userid: req.session.user.id,
-                                username: req.session.user.name,
-                                list: result
-                            });
+                    page = res.render('mypage', {
+                        userid: req.session.user.id,
+                        username: req.session.user.name,
+                        list: result
+                    });
                 }
             }
         );
@@ -244,7 +248,7 @@ router.get('/mypage', function (req, res) {
 
 router.get('/delete/:rID', function (req, res) {
     console.log(req.params.rID);
-    
+
     if (!req.session.user) res.redirect('/login');
     else {
         connection.query(
@@ -260,26 +264,74 @@ router.get('/delete/:rID', function (req, res) {
     }
 })
 
-router.get('/stat', function(req, res){
-    //if (!req.session.user) res.redirect('/login');
-    //else{
-        connection.query(// TODO: 나이 조건 걸기
-            // 나이대 별 카테고리 비율 중 상위 5개만
-            'SELECT category, COUNT(category) AS cnt FROM users GROUP BY category LIMIT 5;',
-            function(err, rows, fields){
-                if(err){
-                    console.log(err);
-                }else{
-                    console.log(rows);
+router.get('/stat', function (req, res) {
+    if (!req.session.user) res.redirect('/login');
+    else {
+        var acc_bycat = [1, 1, 1, 1, 1, 1]
+        var acc_byage = [1, 1, 1, 1, 1, 1]
+        var cat_byage = {}
+        const uid = req.session.user.uid;
+        var userCategory = ''
 
-                    res.render('otherpage/stat.html',{
+        // 카테고리별 누적시간 (acc_bycat)
+        connection.query(
+            'SELECT u.category, a.weekacctime FROM users u JOIN acctime a ON u.uID = a.uID WHERE u.category = (SELECT category FROM users WHERE uID = ? );', uid,
+            function (err, rows, fields) {
+                for (i = 0; i < rows.length; i++) {
+                    const acc = rows[i].weekacctime
+                    var idx = parseInt(acc / 36000)
+                    if (idx > 5) {
+                        acc_bycat[5] += 1
+                    } else {
+                        acc_bycat[idx] += 1
+                    }
+                }
+                userCategory = rows[0].category
+            }
+        )
+        connection.query(
+            'SELECT category, count(category) AS cnt FROM users WHERE truncate(userage/10,0) = (SELECT truncate(userage/10,0) FROM users WHERE uID = ? ) GROUP BY category LIMIT 5;',
+            uid,
+            function (err, rows, fields) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    cat_byage = rows
+                }
+            }
+        )
+        // 나이대별 누적시간, 카테고리
+        connection.query(
+            'SELECT u.category, concat(truncate(u.userage/10,0),0) AS userage, a.weekacctime FROM users u JOIN acctime a ON u.uID = a.uID WHERE truncate(u.userage/10,0) = (SELECT truncate(userage/10,0) FROM users WHERE uID = ? );',
+            uid,
+            function (err, rows, fields) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    for (i = 0; i < rows.length; i++) {
+                        const acc = rows[i].weekacctime
+                        var idx = parseInt(acc / 36000)
+                        if (idx > 5) {
+                            acc_byage[5] += 1
+                        } else {
+                            acc_byage[idx] += 1
+                        }
+                        var userAge = rows[0].userage
+                    }
+                    res.render('otherpage/stat.html', {
+                        // 이름, 나이, 카테고리, 각 결과 배열
                         results: rows,
-                        userName: req.session.user.name
+                        userName: req.session.user.name,
+                        acc_bycat: acc_bycat,
+                        acc_byage: acc_byage,
+                        cat_byage: cat_byage,
+                        userCategory: userCategory,
+                        userAge: userAge
                     });
                 }
             }
         )
-    //}
+    }
 })
 
 
@@ -287,7 +339,7 @@ router.get('/stat', function(req, res){
 router.post('/emoji', upload.single('img'), (req, res) => {
     console.log(req.file);
     connection.query(
-        'UPDATE users SET `userPicture` = ? WHERE (`uID` = ?)', [ '/images/' + req.file.filename,req.session.user.uid],
+        'UPDATE users SET `userPicture` = ? WHERE (`uID` = ?)', ['/images/' + req.file.filename, req.session.user.uid],
         function (err, rows, fields) {
             if (err) {
                 console.log(err);
@@ -299,5 +351,3 @@ router.post('/emoji', upload.single('img'), (req, res) => {
     )
 })
 module.exports = router;
-
-
