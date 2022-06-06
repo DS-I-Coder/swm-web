@@ -5,7 +5,7 @@
 개발환경(IDE) : Visual Studio code (VS code), MySQLWorkbench<br>
 기술스택 : Node.js, JavaScript, HTML/CSS, WebRTC, Docker<br>
 데이터베이스 : MySQL <br>
-형상관리 : Google Drive, GitHub, Discord <br>
+형상관리 : Google Drive, GitHub, Discord, KakaoTalk <br>
 ### 2) 메뉴 구성도
 ![메뉴 구성도](https://user-images.githubusercontent.com/62804036/170040764-76a7920f-63ff-42fc-a3e1-e915e7cc3a18.png)
 ### 3) 서버 구성도
